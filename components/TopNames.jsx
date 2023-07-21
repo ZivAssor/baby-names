@@ -100,7 +100,7 @@ const TopNames = () => {
           <Button
             color="red"
             onClick={() => setModalOpen(false)}
-            ripple="light"
+            ripple={true}
             buttonType="link"
             size="lg"
             className="ml-4"
@@ -110,7 +110,7 @@ const TopNames = () => {
           <Button
             color="blue"
             onClick={handleOKClick}
-            ripple="light"
+            ripple={true}
             size="lg"
           >
             אישור
