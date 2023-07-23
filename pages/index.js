@@ -28,10 +28,10 @@ export default function Home() {
           <BoyorGirlBarChart />
           <SlotMachine />
         </div>
-        <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
-        <BottomNames />
-        <NamebyYears />
-        </div>
+        {/* <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'> */}
+        {/* <BottomNames /> */}
+        {/* <NamebyYears /> */}
+        {/* </div> */}
         <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
         <BottomNames />
         <NameSharebyYear />
