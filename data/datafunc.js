@@ -22,7 +22,7 @@ function topNamesList(gender, startYear, endYear) {
   nameTotals.sort((a, b) => b.total - a.total);
 
   // Return the top 10 names
-  return nameTotals.slice(0, 10);
+  return nameTotals.slice(0,7);
 }
 
 function bottomNamesList(gender, startYear, endYear) {
@@ -47,7 +47,7 @@ function bottomNamesList(gender, startYear, endYear) {
   nameTotals.sort((a, b) => a.total - b.total);
 
   // Return the top 10 names
-  return nameTotals.slice(0, 10);
+  return nameTotals.slice(0, 7);
 }
 
 function calculateNameScales() {

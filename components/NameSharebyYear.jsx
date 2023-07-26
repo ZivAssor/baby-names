@@ -119,8 +119,15 @@ const NameSharebyYear = () => {
                     // Convert the values to percentage and add a "%" sign if in share mode
                     callback: value => (displayMode === 'share' ? value.toFixed(2) + '%' : value),
                 }
-            }
-        }
+            },
+        },
+        elements: {
+            point: {
+              radius: 1,
+            //   hoverRadius: 7,
+            // pointStyle: false
+            },
+          }
     };
 
     return (

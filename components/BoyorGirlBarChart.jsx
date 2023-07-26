@@ -79,7 +79,7 @@ const BoyorGirlBarChart = () => {
         בן או בת?
       </h1>
       <Input
-        label="הקלידו שמות..."
+        label="הקלידו שם..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
@@ -98,17 +98,17 @@ const BoyorGirlBarChart = () => {
         <Bar data={data} options={options} />
       )}
       <div className='p-4 mt-4 border-t border-gray-200' dir='rtl'>
-      <h2 className='font-bold text-xl mb-2'>הבנת התרשים</h2>
+      
+      <h2 className='font-bold text-xl mb-2'>{selectedName.label}</h2>
       <p className='text-gray-700 mb-1'>
-        השם שנבחר הוא: <strong>{selectedName.label}</strong>
+        סה"כ בנים עם השם הזה: <strong>{selectedName.boys}</strong>
       </p>
       <p className='text-gray-700 mb-1'>
-        מספר סה"כ של בנים עם השם הזה: <strong>{selectedName.boys}</strong>
+        סה"כ בנות עם השם הזה: <strong>{selectedName.girls}</strong>
       </p>
-      <p className='text-gray-700 mb-1'>
-        מספר סה"כ של בנות עם השם הזה: <strong>{selectedName.girls}</strong>
-      </p>
-      <p className='text-gray-700 mb-1'>
+      <br />
+      <p className='text-gray-700 mb-1'>הגרף מציג את כמות הבנים והבנות שנבחר להם השם <strong>{selectedName.label}</strong> בין השנים 1948-2021.</p>
+      {/* <p className='text-gray-700 mb-1'>
         התרשים למעלה מציג את תדירות השם שנבחר בין הבנים (בכחול) והבנות (בורוד).
       </p>
       <p className='text-gray-700 mb-1'>
@@ -116,7 +116,7 @@ const BoyorGirlBarChart = () => {
       </p>
       <p className='text-gray-700'>
         באפשרותך לחפש ולבחור שם שונה כדי לראות את התפלגות המינים שלו לאורך השנים.
-      </p>
+      </p> */}
     </div>
     </div>
   );

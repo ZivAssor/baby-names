@@ -75,7 +75,7 @@ const BottomNames = () => {
   const renderTitle = () => {
     return (
       <div>
-        <span>צריך לשנות - </span>
+        {/* <span>צריך לשנות - </span> */}
         <span>השמות הנדירים ביותר </span>
         <span
           className="cursor-pointer hover:underline"
