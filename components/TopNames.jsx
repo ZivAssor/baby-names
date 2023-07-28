@@ -47,8 +47,8 @@ const TopNames = () => {
     ));
 
   return (
-    <div dir='rtl' className='w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto sm:auto p-4 border rounded-lg bg-white overflow-scroll'>
-      <h1 className='text-center text-2xl font-bold mb-4'>
+    <div dir='rtl' className='w-full col-span-1 relative m-auto sm:auto p-4 border rounded-lg bg-white'>
+      <h1 className='text-center text-2xl font-bold'>
         <div>
           <span>השמות הנפוצים ביותר </span>
           <span
@@ -59,6 +59,7 @@ const TopNames = () => {
           </span>
         </div>
       </h1>
+      <p className='text-center text-gray-600 mb-4'>אפשר ללחוץ על השנים כדי לשנות אותן</p>
       <div className='grid grid-cols-2 gap-4'>
         <div>
           <h2 className='text-lg font-semibold text-blue-600 mb-2'>בנים</h2>

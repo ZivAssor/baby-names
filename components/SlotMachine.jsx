@@ -50,9 +50,12 @@ function SlotMachine() {
 
   return (
     <div className="flex flex-col items-center justify-center">
+            <h1 className='text-center text-2xl font-bold mb-4'>
+        רולטת השמות
+      </h1>
       <div>
         <p>מרגישים ברי מזל? 🍀</p>
-        <p>נסו את רולטת השמות</p>
+        <p className='pb-4'>נסו את רולטת השמות</p>
       </div>
       <div className="flex mb-4">
         {slots.map((slot, index) => (

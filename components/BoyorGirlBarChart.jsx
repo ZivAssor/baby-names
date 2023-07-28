@@ -74,7 +74,7 @@ const BoyorGirlBarChart = () => {
   };
 
   return (
-    <div dir='rtl' className='w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-scroll'>
+<div dir='rtl' className='w-full col-span-1 relative m-auto sm:auto p-4 border rounded-lg bg-white'>
       <h1 className='text-center text-2xl font-bold mb-4'>
         בן או בת?
       </h1>

@@ -2,9 +2,8 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div dir='rtl' className='flex justify-between px-4 pt-2'>
-        <h2>דשבורד השמות</h2>
-        {/* <h2>Welcome Back</h2> */}
+    <div dir='rtl' className=' p-3'>
+        <h1 className='text-center text-2xl'>דשבורד השמות של ישראל 🇮🇱🇮🇱🇮🇱</h1>
     </div>
   )
 }

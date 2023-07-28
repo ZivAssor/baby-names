@@ -123,7 +123,7 @@ const NameSharebyYear = () => {
         },
         elements: {
             point: {
-              radius: 1,
+              radius: 2,
             //   hoverRadius: 7,
             // pointStyle: false
             },
@@ -132,16 +132,17 @@ const NameSharebyYear = () => {
 
     return (
         <div className='w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white'>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 items-center mb-2"> {/* Added 'grid-cols-1' and 'md:grid-cols-4' and 'gap-2' classes */}
-                <div className="md:col-span-3"> {/* Added 'md:col-span-3' class */}
+                  <h1 className='text-center text-2xl font-bold mb-4'>שמות לאורך השנים</h1>
+            <div className="grid grid-cols-2 gap-2 items-center mb-2"> {/* Added 'grid-cols-1' and 'md:grid-cols-4' and 'gap-2' classes */}
+                <div className="flex-grow"> {/* Added 'md:col-span-3' class */}
                     <Input
                         label="הקלידו שם..."
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                     />
                 </div>
-                <div className="md:col-span-1"> {/* Added 'md:col-span-1' class */}
-                    <Button color="blue" onClick={handleDisplayModeToggle}>
+                <div className="flex-grow"> {/* Added 'md:col-span-1' class */}
+                    <Button color="blue" onClick={handleDisplayModeToggle} >
                         {displayMode === 'share' ? 'החלף למספר שמות' : 'החלף לאחוז'}
                     </Button>
                 </div>
@@ -157,7 +158,9 @@ const NameSharebyYear = () => {
                     </List>
                 </Card>
             )}
-            {(boysData.length > 0 && girlsData.length > 0) && <Line data={chartData} options={chartOptions} />}
+            <div style={{ height: '85%' }}>
+            {(boysData.length > 0 && girlsData.length > 0) && <Line data={chartData} options={chartOptions}/>}
+            </div>
         </div>
     )
 };
