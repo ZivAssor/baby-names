@@ -134,14 +134,14 @@ const NameSharebyYear = () => {
         <div className='w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white'>
                   <h1 className='text-center text-2xl font-bold mb-4'>שמות לאורך השנים</h1>
             <div className="grid grid-cols-2 gap-2 items-center mb-2"> {/* Added 'grid-cols-1' and 'md:grid-cols-4' and 'gap-2' classes */}
-                <div className="flex-grow"> {/* Added 'md:col-span-3' class */}
+                <div className="flex-grow-2"> {/* Added 'md:col-span-3' class */}
                     <Input
                         label="הקלידו שם..."
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                     />
                 </div>
-                <div className="flex-grow"> {/* Added 'md:col-span-1' class */}
+                <div style={{flexGrow: 1}} className="flex justify-start">
                     <Button color="blue" onClick={handleDisplayModeToggle} >
                         {displayMode === 'share' ? 'החלף למספר שמות' : 'החלף לאחוז'}
                     </Button>
