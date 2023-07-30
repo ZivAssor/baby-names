@@ -102,7 +102,7 @@ function SlotMachine() {
           onChange={() => handleNameListChange("girlsNames")} 
         />
       </div>
-      <button onClick={run} disabled={isRunning || isLoading} className={`mt-4 px-4 py-2 rounded ${isRunning || isLoading ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 text-white'}`}>
+      <button onClick={run} disabled={isRunning || isLoading} id='run-slot-machine' className={`mt-4 px-4 py-2 rounded ${isRunning || isLoading ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 text-white'}`}>
         {isLoading ? 'טוען נתונים...' : 'הפעלה'}
       </button>
     </div>

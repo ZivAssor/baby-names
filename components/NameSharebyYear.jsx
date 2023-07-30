@@ -143,7 +143,7 @@ const NameSharebyYear = () => {
                         />
                     </div>
                     <div className="flex-grow-0"> 
-                        <Button color="blue" onClick={handleDisplayModeToggle} >
+                        <Button id='names-chart-y-axis' color="blue" onClick={handleDisplayModeToggle} >
                             {displayMode === 'share' ? '%' : '#'}
                         </Button>
                     </div>
