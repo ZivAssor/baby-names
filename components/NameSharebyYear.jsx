@@ -108,7 +108,7 @@ const NameSharebyYear = () => {
             },
             title: {
                 display: true,
-                text: `השם ${name}, בין השנים 1948-2021`
+                text: displayMode === 'share' ? `מציג את אחוז השמות עם השם ${name}, בין השנים 1948-2021` : `מציג את מספר השמות עם השם ${name}, בין השנים 1948-2021`
             }
         },
         maintainAspectRatio: false,
@@ -132,24 +132,22 @@ const NameSharebyYear = () => {
 
     return (
         <div className='w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white'>
-                  <h1 className='text-center text-2xl font-bold mb-4'>שמות לאורך השנים</h1>
-                  <div className="flex items-center mb-2">
-
-    <div className="flex-grow"> 
-        <Input
-            label="הקלידו שם..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            fullWidth
-        />
-    </div>
-    <div className="flex-grow-0"> 
-        <Button color="blue" onClick={handleDisplayModeToggle} >
-            {displayMode === 'share' ? 'החלף למספר שמות' : 'החלף לאחוז'}
-        </Button>
-    </div>
-</div>
-
+            <h1 className='text-center text-2xl font-bold mb-4'>שמות לאורך השנים</h1>
+                <div className="flex justify-between gap-2 items-center mb-2">
+                    <div className="flex-grow"> 
+                        <Input
+                            label="הקלידו שם..."
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            // fullWidth
+                        />
+                    </div>
+                    <div className="flex-grow-0"> 
+                        <Button color="blue" onClick={handleDisplayModeToggle} >
+                            {displayMode === 'share' ? '%' : '#'}
+                        </Button>
+                    </div>
+                </div>
             {inputValue && (
                 <Card style={{ position: 'absolute', zIndex: 1 }} className="w-96 mt-2">
                     <List>
