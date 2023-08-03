@@ -108,7 +108,7 @@ const NameSharebyYear = () => {
             },
             title: {
                 display: true,
-                text: displayMode === 'share' ? `מציג את אחוז השמות עם השם ${name}, בין השנים 1948-2021` : `מציג את מספר השמות עם השם ${name}, בין השנים 1948-2021`
+                text: displayMode === 'share' ? `מציג את אחוז השמות עם השם ${name}, בין השנים 1948-2021 לפי שנת לידה` : `מציג את מספר השמות עם השם ${name}, בין השנים 1948-2021 לפי שנת לידה`
             }
         },
         maintainAspectRatio: false,
