@@ -8,6 +8,7 @@ import SlotMachine from '@/components/SlotMachine'
 import BoyorGirlBarChart from '@/components/BoyorGirlBarChart'
 import NameSharebyYear from '@/components/NameSharebyYear'
 import Footer from '@/components/Footer'
+import DataInfo from '@/components/DataInfo'
 
 export default function Home() {
   return (
@@ -34,7 +35,9 @@ export default function Home() {
         <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
         <BottomNames />
         <NameSharebyYear />
-        
+        </div>
+        <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
+          <DataInfo />
         </div>
       </main>
       <Footer />
