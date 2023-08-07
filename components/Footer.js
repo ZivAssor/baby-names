@@ -23,7 +23,7 @@ const Footer = () => {
                       href="https://www.linkedin.com/in/ziv-assor-026012141/" 
                       target="_blank" 
                       rel="noopener noreferrer">              
-          <FaLinkedin className="text-2xl cursor-pointer hover:text-blue-600" />
+          <FaLinkedin className="text-2xl cursor-pointer hover:text-blue-800" />
           </a>
           <a
                       href="https://www.facebook.com/ziv.assor" 
