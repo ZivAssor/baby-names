@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto text-center">
         <div>
           <h1 className="font-semibold">
-            © 2023 All rights reserved | Build with ❤ by{' '}
+            © 2023 All rights reserved | Built with ❤ by{' '}
             <a
               href="https://www.linkedin.com/in/ziv-assor/"
               className="hover:underline hover:cursor-pointer"
