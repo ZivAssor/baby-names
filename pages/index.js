@@ -9,6 +9,7 @@ import BoyorGirlBarChart from '@/components/BoyorGirlBarChart'
 import NameSharebyYear from '@/components/NameSharebyYear'
 import Footer from '@/components/Footer'
 import DataInfo from '@/components/DataInfo'
+import FooterMa from '@/components/FooterMa'
 
 export default function Home() {
   return (
@@ -40,7 +41,7 @@ export default function Home() {
           <DataInfo />
         </div>
       </main>
-      <Footer />
+      <FooterMa />
     </>
   )
 }
