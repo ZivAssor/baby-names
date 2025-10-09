@@ -12,6 +12,7 @@ import {
     Legend
 } from 'chart.js';
 import { getFrequencyPerYear, countByGender, getNameSharebyYear } from '../data/datafunc.js';
+import { START_YEAR, END_YEAR } from '../data/constants.js';
 
 ChartJS.register(
     CategoryScale,
@@ -60,7 +61,7 @@ const NameSharebyYear = () => {
 
     useEffect(() => {
         setChartData({
-            labels: Array.from({ length: 2021 - 1948 + 1 }, (_, i) => 1948 + i),
+            labels: Array.from({ length: END_YEAR - START_YEAR + 1 }, (_, i) => START_YEAR + i),
             datasets: [
                 {
                     label: 'בנים',
@@ -108,7 +109,7 @@ const NameSharebyYear = () => {
             },
             title: {
                 display: true,
-                text: displayMode === 'share' ? `מציג את אחוז השמות עם השם ${name}, בין השנים 1948-2021 לפי שנת לידה` : `מציג את מספר השמות עם השם ${name}, בין השנים 1948-2021 לפי שנת לידה`
+                text: displayMode === 'share' ? `מציג את אחוז השמות עם השם ${name}, בין השנים ${START_YEAR}-${END_YEAR} לפי שנת לידה` : `מציג את מספר השמות עם השם ${name}, בין השנים ${START_YEAR}-${END_YEAR} לפי שנת לידה`
             }
         },
         maintainAspectRatio: false,

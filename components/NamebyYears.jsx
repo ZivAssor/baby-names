@@ -12,6 +12,7 @@ import {
     Legend
 } from 'chart.js';
 import { getFrequencyPerYear, countByGender } from '../data/datafunc.js';
+import { START_YEAR, END_YEAR } from '../data/constants.js';
 
 ChartJS.register(
     CategoryScale,
@@ -41,7 +42,7 @@ const NamebyYears = () => {
 
     useEffect(() => {
         setChartData({
-            labels: Array.from({ length: 2021 - 1948 + 1 }, (_, i) => 1948 + i),
+            labels: Array.from({ length: END_YEAR - START_YEAR + 1 }, (_, i) => START_YEAR + i),
             datasets: [
                 {
                     label: 'בנים',
@@ -85,7 +86,7 @@ const NamebyYears = () => {
             },
             title: {
                 display: true,
-                text: `מספר הבנות והבנים עם השם ${name}, בין השנים 1948-2021`
+                text: `מספר הבנות והבנים עם השם ${name}, בין השנים ${START_YEAR}-${END_YEAR}`
             }
         },
         maintainAspectRatio: false,

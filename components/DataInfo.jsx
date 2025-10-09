@@ -1,11 +1,12 @@
 import React from 'react';
+import { START_YEAR, END_YEAR } from '../data/constants.js';
 
 const DataInfo = () => {
     return (
         <div className="bg-white shadow-md p-6 rounded-md">
             <h1 className="text-2xl font-bold mb-4">כמה מילים על הדאטה</h1>
             <p className="text-base mb-2">
-                האתר מציג נתונים אודות שמות פרטיים של תושבי ישראל, נשים וגברים, לאורך השנים בין 1948 ל-2021.
+                האתר מציג נתונים אודות שמות פרטיים של תושבי ישראל, נשים וגברים, לאורך השנים בין {START_YEAR} ל-{END_YEAR}.
             </p>
             <p className="text-base mb-2">
             המידע שמוצג באתר מבוסס על קובץ השמות שפרסמה הלשכה המרכזת לסטטיסטיקה ביוני 2022, וניתן להוריד אותו מ<a href="https://www.cbs.gov.il/he/Pages/search/TableMaps.aspx?CbsSubject=שמות" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline hover:text-blue-800">כאן</a>. בשלב זה, מוצגים שמות של יהודים ויהודיות בלבד.

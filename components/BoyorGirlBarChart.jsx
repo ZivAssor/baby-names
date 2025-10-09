@@ -1,4 +1,3 @@
-// BoyorGirlBarChart.js
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
@@ -14,6 +13,7 @@ import { countByGender } from '../data/datafunc.js';
 import { Input, List, ListItem, Card } from "@material-tailwind/react";
 import Select from 'react-select';
 import { boysFullList, girlsFullList } from '../data/fullLists.js';
+import { START_YEAR, END_YEAR } from '../data/constants.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -107,7 +107,7 @@ const BoyorGirlBarChart = () => {
         סה"כ בנות עם השם הזה: <strong>{selectedName.girls}</strong>
       </p>
       <br />
-      <p className='text-gray-700 mb-1'>הגרף מציג את כמות הבנים והבנות שנבחר להם השם <strong>{selectedName.label}</strong> בין השנים 1948-2021.</p>
+      <p className='text-gray-700 mb-1'>הגרף מציג את כמות הבנים והבנות שנבחר להם השם <strong>{selectedName.label}</strong> בין השנים {START_YEAR}-{END_YEAR}.</p>
       {/* <p className='text-gray-700 mb-1'>
         התרשים למעלה מציג את תדירות השם שנבחר בין הבנים (בכחול) והבנות (בורוד).
       </p>

@@ -12,6 +12,7 @@ import {
     Legend
 } from 'chart.js';
 import { getFrequencyPerYear } from '../data/datafunc.js';
+import { START_YEAR, END_YEAR } from '../data/constants.js';
 
 ChartJS.register(
     CategoryScale,
@@ -47,7 +48,7 @@ const BoyOrGirl = ({ boysDataList, girlsDataList }) => {
     };
 
     const chartData = {
-        labels: Array.from({length: 2022 - 1948 + 1}, (_, i) => 1948 + i),
+        labels: Array.from({length: END_YEAR - START_YEAR + 1}, (_, i) => START_YEAR + i),
         datasets: [
             {
                 label: 'Boys',
@@ -71,7 +72,7 @@ const BoyOrGirl = ({ boysDataList, girlsDataList }) => {
             },
             title: {
                 display: true,
-                text: `Number of Boys and Girls Named ${name} (1948-2022)`
+                text: `Number of Boys and Girls Named ${name} (${START_YEAR}-${END_YEAR})`
             }
         },
         maintainAspectRatio: false,

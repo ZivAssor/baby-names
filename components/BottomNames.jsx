@@ -3,6 +3,7 @@ import { FaMale, FaFemale } from 'react-icons/fa';
 import Modal from 'react-modal';
 import Select from 'react-select';
 import { bottomNamesList } from '../data/datafunc';
+import { START_YEAR, END_YEAR, YEAR_COUNT } from '../data/constants.js';
 
 const customStyles = {
   content: {
@@ -27,11 +28,11 @@ const customStyles = {
 const BottomNames = () => {
   const [data, setData] = useState({ bottomBoysNames: [], bottomGirlsNames: [] });
   const [startYear, setStartYear] = useState(2010);
-  const [endYear, setEndYear] = useState(2021);
+  const [endYear, setEndYear] = useState(END_YEAR);
   const [tempStartYear, setTempStartYear] = useState(startYear); 
   const [tempEndYear, setTempEndYear] = useState(endYear);
   const [modalOpen, setModalOpen] = useState(false);
-  const yearOptions = Array.from({ length: 74 }, (_, i) => ({ value: i + 1948, label: i + 1948 }));
+  const yearOptions = Array.from({ length: YEAR_COUNT }, (_, i) => ({ value: i + START_YEAR, label: i + START_YEAR }));
 
   useEffect(() => {
     Modal.setAppElement('#__next');
