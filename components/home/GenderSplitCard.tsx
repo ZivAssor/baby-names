@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import GenderBar from '@/components/charts/GenderBar';
+import { Badge } from '@/components/ui/badge';
 import NameSearch from '@/components/NameSearch';
 import { namePath, type Group } from '@/lib/constants';
 import { maskFor } from '@/lib/client-index';
@@ -38,10 +39,11 @@ export default function GenderSplitCard({ group, initial }: GenderSplitCardProps
       <div className={loading ? 'opacity-50' : ''}>
         <GenderBar name={detail.name} boys={boys} girls={girls} />
         <div className="mt-4 border-t border-border p-4">
-          <h3 className="mb-2 text-xl font-bold">
+          <h3 className="mb-2 flex items-center gap-2 text-xl font-bold">
             <Link href={namePath(detail.name)} className="hover:text-primary hover:underline">
               {detail.name}
             </Link>
+            {detail.name === initial.name && <Badge variant="secondary">השם היומי</Badge>}
           </h3>
           <p className="mb-1 text-foreground/90">
             סה״כ בנים עם השם הזה: <strong>{formatNumber(boys)}</strong>

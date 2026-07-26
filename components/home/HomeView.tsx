@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import DataInfoCard from '@/components/home/DataInfoCard';
 import GenderSplitCard from '@/components/home/GenderSplitCard';
 import GroupTabs from '@/components/home/GroupTabs';
@@ -5,7 +6,7 @@ import RankedNamesCard, { type RankedPair } from '@/components/home/RankedNamesC
 import SlotMachine from '@/components/home/SlotMachine';
 import StatsCards from '@/components/home/StatsCards';
 import TrendCard from '@/components/home/TrendCard';
-import { DEFAULT_RANGE, GROUP_LABELS, SITE_NAME, type Group } from '@/lib/constants';
+import { DEFAULT_RANGE, GROUP_LABELS, namePath, type Group } from '@/lib/constants';
 import { defaultNameFor, getNameDetail, rarestNames, topNames } from '@/lib/data';
 
 export default function HomeView({ group }: { group: Group }) {
@@ -35,6 +36,13 @@ export default function HomeView({ group }: { group: Group }) {
           כל השמות הפרטיים בישראל מ-1949 ועד היום, על בסיס הנתונים הרשמיים של הלשכה
           המרכזית לסטטיסטיקה - מגמות, השוואות וסיפורים.
         </p>
+        <Link
+          href={namePath(showcase.name)}
+          className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-primary/15"
+        >
+          <span aria-hidden>✨</span>
+          השם היומי: {showcase.name}
+        </Link>
       </div>
       <GroupTabs active={group} />
       <StatsCards group={group} />
