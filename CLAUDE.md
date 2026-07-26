@@ -78,6 +78,13 @@ Two review rounds caught exactly this class of bug in freshly written code.
 
 ## Code conventions
 
+- **No em/en dashes (— –) in any user-facing copy** — use a regular dash (-).
+  Owner's explicit rule (site must not read as machine-written). Applies to UI
+  strings, story texts, metadata descriptions, and OG images.
+- Charts (Chart.js) must render inside a dedicated `dir="ltr"` container with
+  `position: relative` and definite size, canvas as the only child — Safari
+  renders half-width charts otherwise (TrendLine/GenderBar own this wrapper).
+
 - Client components (`'use client'`) must never value-import `lib/data.ts` or
   `lib/load-data.js` (would pull megabytes into the bundle). Type-only
   imports (`import type`) are fine and used.
