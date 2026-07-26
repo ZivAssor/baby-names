@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { Heebo } from 'next/font/google';
 import Script from 'next/script';
 import Header from '@/components/Header';
@@ -62,6 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Header />
         <main className="mx-auto w-full max-w-7xl px-4 pb-10">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
