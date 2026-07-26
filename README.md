@@ -4,8 +4,8 @@ Statistics on Israeli first names (1949–2024), based on the official CBS
 (הלשכה המרכזית לסטטיסטיקה) names file — all population groups (Jewish, Muslim,
 Christian-Arab, Druze), boys and girls. ~20,000 server-rendered pages.
 
-Built with Next.js (App Router), TypeScript, Tailwind CSS and Chart.js.
-Hosted on Vercel, DNS on Cloudflare.
+Built with Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui and
+custom server-rendered SVG charts. Hosted on Vercel, DNS on Cloudflare.
 
 ## Development
 
@@ -45,6 +45,9 @@ npm run build      # production build (prerenders ~2,100 pages)
   in the UI, never silently treated as zero.
 - `lib/stories.ts` — curated name stories; every number is verified against
   the data and every cultural claim against sources.
+- Charts are custom SVG rendered on the server (`components/charts/`) - the
+  chart data is readable in the page HTML itself; a thin client layer adds
+  hover tooltips.
 - OG images are generated at request time with `next/og` using the bundled
   Heebo fonts (`assets/fonts/`), with a word-reversal shim for satori's
   missing Hebrew bidi support (`lib/og.tsx`).

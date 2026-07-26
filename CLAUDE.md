@@ -3,7 +3,8 @@
 Hebrew RTL statistics site for Israeli first names, 1949–2024, based on the
 official CBS (למ״ס) names file. Live at https://babiesil.com. ~20,000
 server-rendered pages. Stack: Next.js 16 App Router, TypeScript, Tailwind 4,
-Chart.js, deployed on Vercel.
+shadcn/ui (base-nova style: @base-ui/react + cmdk), custom server-rendered
+SVG charts, deployed on Vercel (push to main = deploy).
 
 ## Commands
 
@@ -78,12 +79,22 @@ Two review rounds caught exactly this class of bug in freshly written code.
 
 ## Code conventions
 
-- **No em/en dashes (— –) in any user-facing copy** — use a regular dash (-).
+- **No em/en dashes in any user-facing copy** - use a regular dash (-).
   Owner's explicit rule (site must not read as machine-written). Applies to UI
   strings, story texts, metadata descriptions, and OG images.
-- Charts (Chart.js) must render inside a dedicated `dir="ltr"` container with
-  `position: relative` and definite size, canvas as the only child — Safari
-  renders half-width charts otherwise (TrendLine/GenderBar own this wrapper).
+- **Charts are custom SSR'd SVG** (components/charts/TrendLine.tsx,
+  GenderBar.tsx) - NOT a chart library. Client components, so they hydrate for
+  hover/crosshair, but the full SVG with all data points ships in the initial
+  HTML (crawlable - a deliberate GEO feature; keep it that way). They own a
+  `dir="ltr"` relative container internally. Do not reintroduce chart.js.
+- Design tokens live in app/globals.css (:root oklch variables; warm stone
+  background, indigo primary). Use bg-card/bg-muted/text-muted-foreground
+  etc., never raw gray-* / blue-* utilities - EXCEPT gender coding, which
+  stays literal blue/pink (validated palette: boys #2563eb, girls #ec4899,
+  event highlight #f59e0b).
+- Global name search: components/GlobalSearch.tsx (trigger + Ctrl/Cmd+K via
+  e.code so Hebrew layouts work) lazy-loads components/SearchDialog.tsx
+  (cmdk) on first open - keep it lazy, it is ~64KB gzipped.
 
 - Client components (`'use client'`) must never value-import `lib/data.ts` or
   `lib/load-data.js` (would pull megabytes into the bundle). Type-only
@@ -112,13 +123,17 @@ Two review rounds caught exactly this class of bug in freshly written code.
 ## Adding a name story (`lib/stories.ts`)
 
 1. Mine candidates: one-year spike scan (value vs prev-3yr average) over the
-   series files — see memory/session notes; unexplained spikes already found:
-   פנחס 1996, אלעזר 2002, בר 1989–90, שירן 1983–84, דור 1985–86, לילך 1971.
+   series files. Already RESEARCHED AND UNEXPLAINED (do NOT publish without
+   new evidence - no sourced trigger was found): בר 1989, שירן 1983,
+   נסרין 1976, שירין 1977, היבא 1980. Medium-confidence held back for a
+   possible future batch: דור 1985 (Hanan Yuval album), לובנה 1975
+   (Qays wa Lubna TV series).
 2. Verify the cultural trigger with web sources (we caught a wrong attribution
-   this way — אגם רודברג was never on כוכב נולד).
-3. Verify EVERY number in the prose against `data/generated/series/*.json`.
-4. Keep causal language careful (מתאם, not הוכחה) — the story page includes a
-   standing disclaimer.
+   this way - אגם רודברג was never on כוכב נולד).
+3. Verify EVERY number in the prose against `data/generated/series/*.json`
+   (two review rounds each caught a wrong number in draft prose).
+4. Keep causal language careful (מתאם, not הוכחה) - the story page includes a
+   standing disclaimer. Published stories as of 2026-07: 13.
 
 ## Infrastructure
 
