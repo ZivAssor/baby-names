@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/seo';
 import { STORIES } from '@/lib/stories';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'סיפורי שמות — כשהתרבות פוגשת את חדר הלידה',
+  title: 'סיפורי שמות - כשהתרבות פוגשת את חדר הלידה',
   description: `מה עשה זוהר ארגוב לשם אלינור? איך בת הים הקטנה שינתה את אריאל? סיפורים אמיתיים מנתוני השמות של ישראל. | ${SITE_NAME}`,
   canonical: '/stories',
 });
@@ -15,7 +15,7 @@ export default function StoriesIndexPage() {
     <div className="py-4">
       <h1 className="pb-1 text-3xl font-bold">סיפורי שמות</h1>
       <p className="pb-4 text-muted-foreground">
-        להיט רדיו, סרט של דיסני או רגע לאומי — לפעמים אפשר לראות את התרבות הישראלית בתוך נתוני
+        להיט רדיו, סרט של דיסני או רגע לאומי - לפעמים אפשר לראות את התרבות הישראלית בתוך נתוני
         השמות. כל סיפור כאן מגובה בנתונים אמיתיים של הלמ״ס.
       </p>
       <div className="grid gap-4 md:grid-cols-2">

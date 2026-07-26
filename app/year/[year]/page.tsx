@@ -104,7 +104,7 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
       </p>
 
       <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
-        <h2 className="mb-3 text-xl font-bold">עשרת השמות המובילים — יהודים</h2>
+        <h2 className="mb-3 text-xl font-bold">עשרת השמות המובילים - יהודים</h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <h3 className="mb-2 font-semibold text-blue-600">בנים</h3>
@@ -137,7 +137,7 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
 
       {(movers.risers.length > 0 || moversF.risers.length > 0) && (
         <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
-          <h2 className="mb-3 text-xl font-bold">המזנקים של {year} לעומת {year - 1} — יהודים</h2>
+          <h2 className="mb-3 text-xl font-bold">המזנקים של {year} לעומת {year - 1} - יהודים</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <h3 className="mb-2 font-semibold text-blue-600">בנים</h3>
@@ -148,8 +148,8 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                       {m.name}
                     </Link>{' '}
                     <span className="text-sm text-muted-foreground">
-                      {m.previousSuppressed ? '1–4' : formatNumber(m.previous)} ←{' '}
-                      {m.currentSuppressed ? '1–4' : formatNumber(m.current)}
+                      {m.previousSuppressed ? '1-4' : formatNumber(m.previous)} ←{' '}
+                      {m.currentSuppressed ? '1-4' : formatNumber(m.current)}
                     </span>
                   </li>
                 ))}
@@ -164,8 +164,8 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                       {m.name}
                     </Link>{' '}
                     <span className="text-sm text-muted-foreground">
-                      {m.previousSuppressed ? '1–4' : formatNumber(m.previous)} ←{' '}
-                      {m.currentSuppressed ? '1–4' : formatNumber(m.current)}
+                      {m.previousSuppressed ? '1-4' : formatNumber(m.previous)} ←{' '}
+                      {m.currentSuppressed ? '1-4' : formatNumber(m.current)}
                     </span>
                   </li>
                 ))}

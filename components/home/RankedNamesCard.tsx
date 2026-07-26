@@ -101,7 +101,7 @@ export default function RankedNamesCard({
             setPickerOpen((v) => !v);
           }}
         >
-          {range.start}–{range.end}
+          {range.start}-{range.end}
         </button>
       </h2>
       <p className="mb-4 text-center text-sm text-muted-foreground">אפשר ללחוץ על השנים כדי לשנות אותן</p>

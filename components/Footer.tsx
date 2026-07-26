@@ -32,7 +32,7 @@ export default function Footer() {
           <p className="mb-3 text-lg font-bold">{SITE_NAME}</p>
           <p className="text-sm text-muted-foreground">
             סטטיסטיקות על שמות פרטיים בישראל, על בסיס נתוני הלשכה המרכזית לסטטיסטיקה,
-            1949–2024.
+            1949-2024.
           </p>
         </div>
         <nav aria-label="קבוצות אוכלוסייה">
@@ -87,7 +87,7 @@ export default function Footer() {
             </li>
             <li>
               <Link href="/trending" className="hover:text-primary hover:underline">
-                מגמות — מזנקים ודועכים
+                מגמות - מזנקים ודועכים
               </Link>
             </li>
             <li>

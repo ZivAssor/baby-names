@@ -6,7 +6,7 @@ import { formatNumber } from '@/lib/format';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'שמות יוניסקס — שמות לבנים ולבנות',
+  title: 'שמות יוניסקס - שמות לבנים ולבנות',
   description: `השמות הדו-מגדריים המובילים בישראל: שמות שלפחות רבע מהנושאים אותם הם מהמגדר השני, לפי נתוני הלמ״ס. | ${SITE_NAME}`,
   canonical: '/unisex',
 });

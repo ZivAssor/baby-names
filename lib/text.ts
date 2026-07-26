@@ -13,7 +13,7 @@ export function genderCharacter(detail: NameDetail): string {
   if (mShare <= 5) return 'שם בנות מובהק';
   if (mShare >= 60) return 'שם שניתן בעיקר לבנים';
   if (mShare <= 40) return 'שם שניתן בעיקר לבנות';
-  return 'שם יוניסקס — ניתן לבנים ולבנות';
+  return 'שם יוניסקס - ניתן לבנים ולבנות';
 }
 
 export function nameFacts(detail: NameDetail): string[] {

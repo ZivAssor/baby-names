@@ -20,7 +20,7 @@ export default function GlobalSearch() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      // e.code is layout-independent — with a Hebrew layout the K key reports e.key === 'ל'
+      // e.code is layout-independent - with a Hebrew layout the K key reports e.key === 'ל'
       if ((e.metaKey || e.ctrlKey) && (e.code === 'KeyK' || e.key.toLowerCase() === 'k')) {
         e.preventDefault();
         setOpen((v) => !v);

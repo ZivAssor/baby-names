@@ -21,6 +21,6 @@ export default async function Image({ params }: { params: Promise<{ name: string
   }
   const parts = [`${formatNumber(detail.totalAll)} תושבי ישראל`];
   if (detail.peakYear) parts.push(`שנת שיא: ${detail.peakYear}`);
-  parts.push('נתוני הלמ״ס 1949–2024');
+  parts.push('נתוני הלמ״ס 1949-2024');
   return ogImage(`השם ${detail.name}`, parts);
 }

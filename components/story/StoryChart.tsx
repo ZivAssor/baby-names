@@ -40,8 +40,8 @@ export default function StoryChart({ name, gender, counts, eventYear, eventLabel
       </div>
       <p className="mt-2 text-xs text-muted-foreground">
         {counts[eventYear - FIRST_YEAR] === SUPPRESSED
-          ? `${eventYear} — ${eventLabel}. `
-          : `הנקודה הכתומה מסמנת את ${eventYear} — ${eventLabel}. `}
+          ? `${eventYear} - ${eventLabel}. `
+          : `הנקודה הכתומה מסמנת את ${eventYear} - ${eventLabel}. `}
         קטעים חסרים הם שנים עם פחות מ-5 נולדים (מוסתר על ידי הלמ״ס).
       </p>
     </div>

@@ -21,7 +21,7 @@ export async function generateMetadata({
   const label = GROUP_LABELS[group as Group];
   return pageMetadata({
     title: `שמות ${label}`,
-    description: `השמות הנפוצים והנדירים בקרב ${label} בישראל, מגמות לאורך השנים והתפלגות בין בנים לבנות — על בסיס נתוני הלמ״ס 1949–2024. | ${SITE_NAME}`,
+    description: `השמות הנפוצים והנדירים בקרב ${label} בישראל, מגמות לאורך השנים והתפלגות בין בנים לבנות - על בסיס נתוני הלמ״ס 1949-2024. | ${SITE_NAME}`,
     canonical: `/${group}`,
   });
 }

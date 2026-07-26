@@ -1,8 +1,8 @@
 // Server-only data API. All statistics the app shows are computed here, at
-// build time or inside route handlers — never in the browser.
+// build time or inside route handlers - never in the browser.
 //
 // Suppression semantics: a count of -1 (SUPPRESSED) means CBS hid a value of
-// 1–4 for privacy. Range sums therefore have a lower bound of
+// 1-4 for privacy. Range sums therefore have a lower bound of
 // visible + suppressedYears (each hidden year is at least 1). The CBS `t`
 // total additionally includes people born before 1949, so `t` can exceed any
 // sum over the year columns.
@@ -31,7 +31,7 @@ export type { DirectoryEntry, SeriesKey };
 // (e.g. a new CBS file added a year but lib/constants.ts was not updated).
 if (aggregatesFile.firstYear !== FIRST_YEAR || aggregatesFile.lastYear !== LAST_YEAR) {
   throw new Error(
-    `data/generated covers ${aggregatesFile.firstYear}–${aggregatesFile.lastYear} but lib/constants.ts declares ${FIRST_YEAR}–${LAST_YEAR}; update LAST_YEAR and re-run npm run build:data`,
+    `data/generated covers ${aggregatesFile.firstYear}-${aggregatesFile.lastYear} but lib/constants.ts declares ${FIRST_YEAR}-${LAST_YEAR}; update LAST_YEAR and re-run npm run build:data`,
   );
 }
 
@@ -46,7 +46,7 @@ export function clampYear(year: number): number {
 export interface RangeStats {
   /** sum of the published yearly values in the range */
   visible: number;
-  /** number of years in the range whose value is hidden (each hides 1–4) */
+  /** number of years in the range whose value is hidden (each hides 1-4) */
   suppressedYears: number;
 }
 
@@ -143,11 +143,11 @@ export interface NameDetail {
   /** year with the highest combined visible count */
   peakYear: number | null;
   peakCount: number;
-  /** number of this name's series whose peak-year value is suppressed — when > 0, peakCount is a lower bound */
+  /** number of this name's series whose peak-year value is suppressed - when > 0, peakCount is a lower bound */
   peakSuppressedSeries: number;
   /** combined visible count in LAST_YEAR */
   latestCount: number;
-  /** number of this name's series whose LAST_YEAR value is suppressed — when > 0, latestCount is a lower bound */
+  /** number of this name's series whose LAST_YEAR value is suppressed - when > 0, latestCount is a lower bound */
   latestSuppressedSeries: number;
   /** rank in LAST_YEAR within the name's strongest group+gender (1-based), if it appeared */
   latestRank: { group: Group; gender: Gender; rank: number } | null;
@@ -344,7 +344,7 @@ export function namesByLetter(letter: string): DirectoryEntry[] {
     .sort((a, b) => b.totalAll - a.totalAll);
 }
 
-// Sorted-by-popularity view built once — relatedNames is called for every
+// Sorted-by-popularity view built once - relatedNames is called for every
 // prerendered name page, so it must not rescan the whole directory each time.
 let byTotal: DirectoryEntry[] | null = null;
 let byTotalIndex: Map<string, number> | null = null;
@@ -356,7 +356,7 @@ function popularityOrder(): { list: DirectoryEntry[]; index: Map<string, number>
   return { list: byTotal, index: byTotalIndex };
 }
 
-/** Names with the closest all-time totals to the given name — small crawl mesh between name pages. */
+/** Names with the closest all-time totals to the given name - small crawl mesh between name pages. */
 export function relatedNames(name: string, limit = 8): DirectoryEntry[] {
   const { list, index } = popularityOrder();
   const i = index.get(name);
@@ -378,7 +378,7 @@ export function relatedNames(name: string, limit = 8): DirectoryEntry[] {
 
 export interface YearMover {
   name: string;
-  /** visible count; when the matching *Suppressed flag is true the real value is 1–4 */
+  /** visible count; when the matching *Suppressed flag is true the real value is 1-4 */
   current: number;
   previous: number;
   currentSuppressed: boolean;
@@ -386,9 +386,9 @@ export interface YearMover {
   delta: number;
 }
 
-/** Biggest absolute year-over-year movers. Suppressed endpoints (hidden 1–4)
+/** Biggest absolute year-over-year movers. Suppressed endpoints (hidden 1-4)
  *  are never treated as 0: the delta uses the lower bound of 1 and the flags
- *  let the UI render "1–4" instead of a false exact number. */
+ *  let the UI render "1-4" instead of a false exact number. */
 export function yearMovers(
   year: number,
   group: Group,
@@ -436,15 +436,15 @@ export interface TrendingName {
   current: number;
   /** average count in the earlier window (lower bound when pastSuppressed > 0) */
   past: number;
-  /** suppressed years inside each window — when > 0 the average is a lower bound */
+  /** suppressed years inside each window - when > 0 the average is a lower bound */
   currentSuppressed: number;
   pastSuppressed: number;
   /** current / past (computed on the lower-bound averages) */
   ratio: number;
 }
 
-export const TREND_CURRENT: [number, number] = [LAST_YEAR - 2, LAST_YEAR]; // 2022–2024
-export const TREND_PAST: [number, number] = [LAST_YEAR - 7, LAST_YEAR - 5]; // 2017–2019
+export const TREND_CURRENT: [number, number] = [LAST_YEAR - 2, LAST_YEAR]; // 2022-2024
+export const TREND_PAST: [number, number] = [LAST_YEAR - 7, LAST_YEAR - 5]; // 2017-2019
 
 /** Window average using the suppression lower bound (each hidden year ≥ 1). */
 function windowAvg(
@@ -529,7 +529,7 @@ function nameHash(name: string): number {
 
 /** Rare names still in living use: smallest all-time totals with evidence in the last 15 years.
  *  Hundreds of names tie at the CBS floor (total = 5), so ties break by most recent
- *  use and then a stable hash — not alphabetically, which would fill the whole list
+ *  use and then a stable hash - not alphabetically, which would fill the whole list
  *  with names starting at א. */
 export function rareNames(limit = 60): { name: string; totalAll: number; gender: Gender | 'both' }[] {
   const cutoff = yearIndex(LAST_YEAR - 14);

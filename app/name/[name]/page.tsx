@@ -42,7 +42,7 @@ export async function generateMetadata({
   const detail = await detailFromParams(params);
   if (!detail) return { title: 'שם לא נמצא' };
   return pageMetadata({
-    title: `השם ${detail.name} — סטטיסטיקות, פופולריות ומגמות`,
+    title: `השם ${detail.name} - סטטיסטיקות, פופולריות ומגמות`,
     description: nameMetaDescription(detail),
     canonical: namePath(detail.name),
   });
@@ -87,14 +87,14 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
         </Link>{' '}
         ›{' '}
         <Link href={letterPath(letter)} className="hover:underline">
-          שמות ב–{letter}
+          שמות ב-{letter}
         </Link>{' '}
         › <span className="text-foreground/90">{detail.name}</span>
       </nav>
 
       <h1 className="pb-1 text-3xl font-bold">השם {detail.name}</h1>
       <p className="pb-4 text-muted-foreground">
-        סטטיסטיקות ומגמות על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949–2024
+        סטטיסטיקות ומגמות על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949-2024
       </p>
 
       <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">

@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQ = [
   {
     q: 'מאיפה מגיעים הנתונים?',
-    a: `הנתונים מבוססים על קובץ "השמות הנוכחיים של ילידי ${FIRST_YEAR}–${LAST_YEAR}" שמפרסמת הלשכה המרכזית לסטטיסטיקה (למ״ס). הקובץ מפרט, לכל שם פרטי, כמה מתושבי ישראל שנולדו בכל שנה נושאים את השם — בחלוקה למגדר ולקבוצת אוכלוסייה.`,
+    a: `הנתונים מבוססים על קובץ "השמות הנוכחיים של ילידי ${FIRST_YEAR}-${LAST_YEAR}" שמפרסמת הלשכה המרכזית לסטטיסטיקה (למ״ס). הקובץ מפרט, לכל שם פרטי, כמה מתושבי ישראל שנולדו בכל שנה נושאים את השם - בחלוקה למגדר ולקבוצת אוכלוסייה.`,
   },
   {
     q: 'למה יש שנים בלי נתון לשם מסוים?',
@@ -22,7 +22,7 @@ const FAQ = [
   },
   {
     q: 'למה הסך הכולל של שם גדול מסכום השנים בגרף?',
-    a: `שתי סיבות: ראשית, שנים מוסתרות (פחות מ-5) אינן נכללות בסכום הגלוי. שנית, הסך הכולל של הלמ״ס כולל גם תושבים שנולדו לפני ${FIRST_YEAR} — למשל עולים שנולדו בחו״ל — שאין להם עמודת שנה בקובץ.`,
+    a: `שתי סיבות: ראשית, שנים מוסתרות (פחות מ-5) אינן נכללות בסכום הגלוי. שנית, הסך הכולל של הלמ״ס כולל גם תושבים שנולדו לפני ${FIRST_YEAR} - למשל עולים שנולדו בחו״ל - שאין להם עמודת שנה בקובץ.`,
   },
   {
     q: 'האם הנתונים כוללים את כל תושבי ישראל?',
@@ -41,7 +41,7 @@ export default function AboutPage() {
   const datasetJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
-    name: `שמות פרטיים בישראל ${FIRST_YEAR}–${LAST_YEAR}`,
+    name: `שמות פרטיים בישראל ${FIRST_YEAR}-${LAST_YEAR}`,
     description: meta.sourceDescription,
     url: `${SITE_URL}/about`,
     inLanguage: 'he',
@@ -91,7 +91,7 @@ export default function AboutPage() {
           : ״{meta.sourceDescription}״.
         </p>
         <p className="mb-2">
-          הקובץ מכסה את ילידי {FIRST_YEAR}–{LAST_YEAR} וכולל {formatNumber(totals.names)} שמות
+          הקובץ מכסה את ילידי {FIRST_YEAR}-{LAST_YEAR} וכולל {formatNumber(totals.names)} שמות
           ייחודיים של כ-{formatNumber(totals.people)} תושבים, בחלוקה למגדר ולארבע קבוצות
           אוכלוסייה: {GROUPS.map((g) => GROUP_LABELS[g]).join(', ')}.
         </p>
@@ -115,7 +115,7 @@ export default function AboutPage() {
           המקורי). באתר:
         </p>
         <ul className="list-inside list-disc space-y-1 text-foreground/90">
-          <li>שנים מוסתרות מוצגות בגרפים כקטעים חסרים — לא כאפס.</li>
+          <li>שנים מוסתרות מוצגות בגרפים כקטעים חסרים - לא כאפס.</li>
           <li>
             בסכומים על פני טווח שנים, שנה מוסתרת נספרת כ-1 לפחות, והסכום מסומן ב-+ כערך
             מינימלי.

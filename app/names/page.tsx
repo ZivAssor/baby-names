@@ -7,7 +7,7 @@ import { formatNumber } from '@/lib/format';
 
 export const metadata: Metadata = pageMetadata({
   title: 'כל השמות לפי א״ב',
-  description: `אינדקס כל השמות הפרטיים בישראל לפי סדר א״ב — כמעט 20,000 שמות מנתוני הלמ״ס, עם סטטיסטיקות מלאות לכל שם. | ${SITE_NAME}`,
+  description: `אינדקס כל השמות הפרטיים בישראל לפי סדר א״ב - כמעט 20,000 שמות מנתוני הלמ״ס, עם סטטיסטיקות מלאות לכל שם. | ${SITE_NAME}`,
   canonical: '/names',
 });
 
@@ -20,7 +20,7 @@ export default function NamesIndexPage() {
     <div className="py-4">
       <h1 className="pb-1 text-3xl font-bold">כל השמות לפי א״ב</h1>
       <p className="pb-4 text-muted-foreground">
-        {formatNumber(totals.names)} שמות פרטיים מנתוני הלשכה המרכזית לסטטיסטיקה — לחצו על אות
+        {formatNumber(totals.names)} שמות פרטיים מנתוני הלשכה המרכזית לסטטיסטיקה - לחצו על אות
         כדי לעיין, או על שם כדי לראות את הסטטיסטיקות המלאות שלו.
       </p>
 

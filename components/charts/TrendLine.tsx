@@ -24,8 +24,12 @@ interface TrendLineProps {
 }
 
 export default function TrendLine({ datasets, percent, title }: TrendLineProps) {
+  // Chart.js sizing contract: the canvas must be the only child of a dedicated
+  // block container with position:relative and a definite size. Without this,
+  // Safari measures the flex/RTL parent mid-layout and renders a half-width chart.
   return (
-    <Line
+    <div dir="ltr" className="relative h-full w-full">
+      <Line
       data={{
         labels: YEARS,
         datasets: datasets.map(({ label, color, values, pointRadius }) => ({
@@ -71,6 +75,7 @@ export default function TrendLine({ datasets, percent, title }: TrendLineProps) 
         },
         elements: { point: { radius: 2 } },
       }}
-    />
+      />
+    </div>
   );
 }

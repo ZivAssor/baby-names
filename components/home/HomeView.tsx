@@ -33,7 +33,7 @@ export default function HomeView({ group }: { group: Group }) {
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
           כל השמות הפרטיים בישראל מ-1949 ועד היום, על בסיס הנתונים הרשמיים של הלשכה
-          המרכזית לסטטיסטיקה — מגמות, השוואות וסיפורים.
+          המרכזית לסטטיסטיקה - מגמות, השוואות וסיפורים.
         </p>
       </div>
       <GroupTabs active={group} />

@@ -58,7 +58,7 @@ export default function NameCharts({ detail }: { detail: NameDetail }) {
           />
         </div>
         <p className="mt-2 text-xs text-muted-foreground">
-          קטעים חסרים בגרף הם שנים שבהן פחות מ-5 נולדים קיבלו את השם — הלמ״ס מסתירה ערכים אלו
+          קטעים חסרים בגרף הם שנים שבהן פחות מ-5 נולדים קיבלו את השם - הלמ״ס מסתירה ערכים אלו
           מטעמי פרטיות.
         </p>
       </section>

@@ -14,7 +14,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = pageMetadata({
   title: 'השמות המזנקים והדועכים בישראל',
-  description: `אילו שמות מתפרצים עכשיו ואילו נעלמים? השוואה בין ${TREND_CURRENT[0]}–${TREND_CURRENT[1]} ל-${TREND_PAST[0]}–${TREND_PAST[1]} על בסיס נתוני הלמ״ס, לכל קבוצות האוכלוסייה. | ${SITE_NAME}`,
+  description: `אילו שמות מתפרצים עכשיו ואילו נעלמים? השוואה בין ${TREND_CURRENT[0]}-${TREND_CURRENT[1]} ל-${TREND_PAST[0]}-${TREND_PAST[1]} על בסיס נתוני הלמ״ס, לכל קבוצות האוכלוסייה. | ${SITE_NAME}`,
   canonical: '/trending',
 });
 
@@ -24,7 +24,7 @@ function TrendTable({ gender }: { gender: Gender }) {
     <div className="rounded-xl border border-border bg-card shadow-sm p-6">
       <h2 className="mb-1 text-xl font-bold">{GENDER_LABELS[gender]}</h2>
       <p className="mb-3 text-sm text-muted-foreground">
-        ממוצע שנתי {windows.current[0]}–{windows.current[1]} לעומת {windows.past[0]}–
+        ממוצע שנתי {windows.current[0]}-{windows.current[1]} לעומת {windows.past[0]}-
         {windows.past[1]}
       </p>
       <div className="grid gap-6 sm:grid-cols-2">
@@ -73,8 +73,8 @@ export default function TrendingPage() {
     <div className="py-4">
       <h1 className="pb-1 text-3xl font-bold">השמות המזנקים והדועכים בישראל</h1>
       <p className="pb-4 text-muted-foreground">
-        השוואה של ממוצע הנולדים בשנים {TREND_CURRENT[0]}–{TREND_CURRENT[1]} מול{' '}
-        {TREND_PAST[0]}–{TREND_PAST[1]}, מנתוני הלמ״ס. שמות עם מעט מדי נולדים לא נכללים
+        השוואה של ממוצע הנולדים בשנים {TREND_CURRENT[0]}-{TREND_CURRENT[1]} מול{' '}
+        {TREND_PAST[0]}-{TREND_PAST[1]}, מנתוני הלמ״ס. שמות עם מעט מדי נולדים לא נכללים
         (הסף מותאם לגודל כל קבוצת אוכלוסייה), כדי שהרשימה תשקף מגמות אמיתיות ולא רעש.
         ממוצע עם + הוא ערך מינימלי: חלק משנות החלון מוסתרות על ידי הלמ״ס (פחות מ-5).
       </p>

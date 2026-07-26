@@ -1,7 +1,7 @@
 export const SITE_NAME = 'דשבורד השמות של ישראל';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://babiesil.com';
 export const SITE_DESCRIPTION =
-  'מחפשים שם לבייבי שבדרך? כאן תמצאו את השמות הנפוצים והנדירים בישראל, מגמות של שמות לאורך השנים, התפלגות בין בנים לבנות ועוד — על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949–2024.';
+  'מחפשים שם לבייבי שבדרך? כאן תמצאו את השמות הנפוצים והנדירים בישראל, מגמות של שמות לאורך השנים, התפלגות בין בנים לבנות ועוד - על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949-2024.';
 
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? 'GTM-WPC9JGKS';
 
@@ -28,7 +28,7 @@ export const GENDER_LABELS: Record<Gender, string> = {
   f: 'בנות',
 };
 
-/** URL path for a group's home view — Jewish is the site root */
+/** URL path for a group's home view - Jewish is the site root */
 export function groupPath(group: Group): string {
   return group === 'jewish' ? '/' : `/${group}`;
 }

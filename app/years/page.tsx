@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = pageMetadata({
   title: 'השמות הפופולריים לפי שנה',
-  description: `השם המוביל לבנים ולבנות בכל שנה מ-${FIRST_YEAR} ועד ${LAST_YEAR} — לחצו על שנה לרשימה המלאה לפי מגדר וקבוצת אוכלוסייה. | ${SITE_NAME}`,
+  description: `השם המוביל לבנים ולבנות בכל שנה מ-${FIRST_YEAR} ועד ${LAST_YEAR} - לחצו על שנה לרשימה המלאה לפי מגדר וקבוצת אוכלוסייה. | ${SITE_NAME}`,
   canonical: '/years',
 });
 
@@ -15,8 +15,8 @@ export default function YearsIndexPage() {
   for (let year = LAST_YEAR; year >= FIRST_YEAR; year--) {
     years.push({
       year,
-      topBoy: topNames('jewish', 'm', year, year, 1)[0]?.name ?? '—',
-      topGirl: topNames('jewish', 'f', year, year, 1)[0]?.name ?? '—',
+      topBoy: topNames('jewish', 'm', year, year, 1)[0]?.name ?? '-',
+      topGirl: topNames('jewish', 'f', year, year, 1)[0]?.name ?? '-',
     });
   }
 

@@ -9,6 +9,6 @@ export default function Image() {
   return ogImage(SITE_NAME, [
     'סטטיסטיקות על שמות פרטיים בישראל',
     'נתוני הלמ״ס',
-    '1949–2024',
+    '1949-2024',
   ]);
 }

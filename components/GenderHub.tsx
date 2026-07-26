@@ -20,10 +20,10 @@ export default function GenderHub({ gender }: { gender: Gender }) {
 
   return (
     <div className="py-4">
-      <h1 className="pb-1 text-3xl font-bold">שמות ל{label === 'בנים' ? 'בן' : 'בת'} — כל הנתונים</h1>
+      <h1 className="pb-1 text-3xl font-bold">שמות ל{label === 'בנים' ? 'בן' : 'בת'} - כל הנתונים</h1>
       <p className="pb-4 text-muted-foreground">
         מחפשים שם ל{label === 'בנים' ? 'בן' : 'בת'}? כאן תמצאו את השמות המובילים עכשיו, הקלאסיקות
-        של כל הזמנים והשמות שמתפרצים בדיוק ברגעים אלה — הכול מנתוני הלמ״ס, {LAST_YEAR}–1949.
+        של כל הזמנים והשמות שמתפרצים בדיוק ברגעים אלה - הכול מנתוני הלמ״ס, {LAST_YEAR}-1949.
       </p>
 
       <div className="mb-4 grid gap-4 md:grid-cols-2">
@@ -43,7 +43,7 @@ export default function GenderHub({ gender }: { gender: Gender }) {
 
         <section className="rounded-xl border border-border bg-card shadow-sm p-6">
           <h2 className="mb-3 text-xl font-bold">
-            המובילים בעשור האחרון ({DEFAULT_RANGE.start}–{DEFAULT_RANGE.end})
+            המובילים בעשור האחרון ({DEFAULT_RANGE.start}-{DEFAULT_RANGE.end})
           </h2>
           <ol className="list-inside list-decimal space-y-1">
             {decade.map((n) => (
@@ -82,7 +82,7 @@ export default function GenderHub({ gender }: { gender: Gender }) {
         <section className="rounded-xl border border-border bg-card shadow-sm p-6">
           <h2 className="mb-3 text-xl font-bold">מתפרצים עכשיו</h2>
           <p className="mb-2 text-sm text-muted-foreground">
-            ממוצע {TREND_CURRENT[0]}–{TREND_CURRENT[1]} לעומת {TREND_PAST[0]}–{TREND_PAST[1]}
+            ממוצע {TREND_CURRENT[0]}-{TREND_CURRENT[1]} לעומת {TREND_PAST[0]}-{TREND_PAST[1]}
           </p>
           <ul className="space-y-1.5">
             {risers.map((n) => (

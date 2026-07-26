@@ -7,7 +7,7 @@ export default function StatsCards({ group }: { group: Group }) {
   const cards = [
     { value: formatNumber(stats.boyNames), label: 'שמות של בנים', color: 'text-blue-500' },
     { value: formatNumber(stats.girlNames), label: 'שמות של בנות', color: 'text-pink-500' },
-    { value: `${FIRST_YEAR}–${LAST_YEAR}`, label: 'תקופת זמן', color: 'text-foreground' },
+    { value: `${FIRST_YEAR}-${LAST_YEAR}`, label: 'תקופת זמן', color: 'text-foreground' },
   ];
   return (
     <div className="grid gap-4 py-4 sm:grid-cols-3">

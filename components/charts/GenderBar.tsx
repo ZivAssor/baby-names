@@ -14,7 +14,8 @@ interface GenderBarProps {
 
 export default function GenderBar({ name, boys, girls }: GenderBarProps) {
   return (
-    <Bar
+    <div dir="ltr" className="relative w-full">
+      <Bar
       data={{
         labels: [name],
         datasets: [
@@ -36,6 +37,7 @@ export default function GenderBar({ name, boys, girls }: GenderBarProps) {
           },
         },
       }}
-    />
+      />
+    </div>
   );
 }

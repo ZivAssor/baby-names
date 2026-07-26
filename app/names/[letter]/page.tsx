@@ -29,7 +29,7 @@ export async function generateMetadata({
   const letter = await letterFromParams(params);
   return pageMetadata({
     title: `שמות שמתחילים באות ${letter}`,
-    description: `כל השמות הפרטיים בישראל שמתחילים באות ${letter}, מסודרים לפי פופולריות — עם סטטיסטיקות מלאות לכל שם. | ${SITE_NAME}`,
+    description: `כל השמות הפרטיים בישראל שמתחילים באות ${letter}, מסודרים לפי פופולריות - עם סטטיסטיקות מלאות לכל שם. | ${SITE_NAME}`,
     canonical: `/names/${encodeURIComponent(letter ?? '')}`,
   });
 }

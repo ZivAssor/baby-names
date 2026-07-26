@@ -1,5 +1,5 @@
 // Client-side access to the compact name index ([name, totalAll, seriesMask]).
-// Fetched lazily once per session (~100KB gzipped) — the full dataset never
+// Fetched lazily once per session (~100KB gzipped) - the full dataset never
 // reaches the browser.
 import type { Gender, Group } from './constants';
 
@@ -53,7 +53,7 @@ export function filterIndex(
   limit = 10,
 ): IndexEntry[] {
   // The data uses ASCII ' and " for geresh/gershayim; Hebrew keyboards often
-  // produce the Unicode characters U+05F3 / U+05F4 — normalize them.
+  // produce the Unicode characters U+05F3 / U+05F4 - normalize them.
   const q = query.trim().replace(/\u05F3/g, "'").replace(/\u05F4/g, '"');
   if (!q) return [];
   const starts: IndexEntry[] = [];

@@ -91,7 +91,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           </p>
         ))}
         <p className="mt-4 text-sm text-muted-foreground">
-          חשוב לומר: נתוני שמות מראים מתאם בין אירועים תרבותיים לבחירות של הורים — לא הוכחה
+          חשוב לומר: נתוני שמות מראים מתאם בין אירועים תרבותיים לבחירות של הורים - לא הוכחה
           לסיבתיות. הנתונים עצמם רשמיים ומדויקים (למ״ס), הפרשנות היא שלנו.
         </p>
       </section>
@@ -114,7 +114,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       <section className="mt-6 text-sm text-muted-foreground">
         <h2 className="mb-1 font-semibold text-muted-foreground">מקורות</h2>
         <ul className="list-inside list-disc">
-          <li>הלשכה המרכזית לסטטיסטיקה — קובץ השמות הפרטיים 1949–2024</li>
+          <li>הלשכה המרכזית לסטטיסטיקה - קובץ השמות הפרטיים 1949-2024</li>
           {story.sources.map(({ label, url }) => (
             <li key={url}>
               <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">

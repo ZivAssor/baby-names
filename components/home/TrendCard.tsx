@@ -52,7 +52,7 @@ export default function TrendCard({ group, initial }: TrendCardProps) {
         </button>
       </div>
       {error && <p className="text-center text-sm text-destructive">שגיאה בטעינת הנתונים, נסו שוב</p>}
-      <div className={`min-h-0 grow ${loading ? 'opacity-50' : ''}`}>
+      <div className={`relative min-h-0 w-full grow ${loading ? 'opacity-50' : ''}`}>
         <TrendLine
           datasets={datasets}
           percent={percent}

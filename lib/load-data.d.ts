@@ -3,9 +3,9 @@ import type { Group, Gender } from './constants';
 export interface RawNameSeries {
   /** the name */
   n: string;
-  /** CBS all-time total — includes suppressed years and people born before 1949 */
+  /** CBS all-time total - includes suppressed years and people born before 1949 */
   t: number;
-  /** counts per year, index 0 = 1949; -1 means suppressed (a hidden 1–4) */
+  /** counts per year, index 0 = 1949; -1 means suppressed (a hidden 1-4) */
   c: number[];
 }
 

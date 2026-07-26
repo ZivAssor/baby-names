@@ -19,7 +19,7 @@ interface SearchDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-/** The actual command palette — loaded lazily so cmdk/dialog code is not in every route's initial bundle. */
+/** The actual command palette - loaded lazily so cmdk/dialog code is not in every route's initial bundle. */
 export default function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const router = useRouter();
   const [query, setQuery] = useState('');
