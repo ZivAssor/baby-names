@@ -118,7 +118,7 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
                 className="inline-block rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground hover:bg-accent hover:text-primary"
               >
                 {name}
-                <span className="ms-1.5 text-xs text-muted-foreground/80">{formatNumber(totalAll)}</span>
+                <span className="ms-1.5 text-xs text-muted-foreground">{formatNumber(totalAll)}</span>
               </Link>
             </li>
           ))}

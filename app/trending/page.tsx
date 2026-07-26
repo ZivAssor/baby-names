@@ -36,7 +36,7 @@ function TrendTable({ gender }: { gender: Gender }) {
                 <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>
-                <span className="text-sm text-muted-foreground/80">
+                <span className="text-sm text-muted-foreground">
                   {formatNumber(n.past)}
                   {n.pastSuppressed > 0 ? '+' : ''} ← {formatNumber(n.current)}
                   {n.currentSuppressed > 0 ? '+' : ''} (פי{' '}
@@ -54,7 +54,7 @@ function TrendTable({ gender }: { gender: Gender }) {
                 <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>
-                <span className="text-sm text-muted-foreground/80">
+                <span className="text-sm text-muted-foreground">
                   {formatNumber(n.past)}
                   {n.pastSuppressed > 0 ? '+' : ''} ← {formatNumber(n.current)}
                   {n.currentSuppressed > 0 ? '+' : ''}
@@ -97,7 +97,7 @@ export default function TrendingPage() {
                   <Link href={namePath(top.name)} className="font-semibold text-primary hover:underline">
                     {top.name}
                   </Link>{' '}
-                  <span className="text-sm text-muted-foreground/80">
+                  <span className="text-sm text-muted-foreground">
                     ({formatNumber(top.past)}
                     {top.pastSuppressed > 0 ? '+' : ''} ← {formatNumber(top.current)}
                     {top.currentSuppressed > 0 ? '+' : ''})

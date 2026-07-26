@@ -9,7 +9,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/names"
-        className="rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
+        className="rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
       >
         לעיון בכל השמות
       </Link>

@@ -34,7 +34,7 @@ export default function NamesIndexPage() {
                 className="inline-block rounded-lg bg-secondary px-4 py-2 text-lg font-semibold text-secondary-foreground hover:bg-accent hover:text-primary"
               >
                 {letter}
-                <span className="ms-1.5 text-xs font-normal text-muted-foreground/80">
+                <span className="ms-1.5 text-xs font-normal text-muted-foreground">
                   {formatNumber(count)}
                 </span>
               </Link>
@@ -53,7 +53,7 @@ export default function NamesIndexPage() {
                 className="inline-block rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground hover:bg-accent hover:text-primary"
               >
                 {name}
-                <span className="ms-1.5 text-xs text-muted-foreground/80">{formatNumber(total)}</span>
+                <span className="ms-1.5 text-xs text-muted-foreground">{formatNumber(total)}</span>
               </Link>
             </li>
           ))}

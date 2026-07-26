@@ -35,7 +35,7 @@ export default function GenderHub({ gender }: { gender: Gender }) {
                 <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>{' '}
-                <span className="text-sm text-muted-foreground/80">{countDisplay(n)}</span>
+                <span className="text-sm text-muted-foreground">{countDisplay(n)}</span>
               </li>
             ))}
           </ol>
@@ -51,7 +51,7 @@ export default function GenderHub({ gender }: { gender: Gender }) {
                 <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>{' '}
-                <span className="text-sm text-muted-foreground/80">{countDisplay(n)}</span>
+                <span className="text-sm text-muted-foreground">{countDisplay(n)}</span>
               </li>
             ))}
           </ol>
@@ -72,7 +72,7 @@ export default function GenderHub({ gender }: { gender: Gender }) {
                   className="inline-block rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground hover:bg-accent hover:text-primary"
                 >
                   {name}
-                  <span className="ms-1.5 text-xs text-muted-foreground/80">{formatNumber(total)}</span>
+                  <span className="ms-1.5 text-xs text-muted-foreground">{formatNumber(total)}</span>
                 </Link>
               </li>
             ))}
@@ -90,7 +90,7 @@ export default function GenderHub({ gender }: { gender: Gender }) {
                 <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>
-                <span className="text-sm text-muted-foreground/80">
+                <span className="text-sm text-muted-foreground">
                   {formatNumber(n.past)}
                   {n.pastSuppressed > 0 ? '+' : ''} ← {formatNumber(n.current)}
                   {n.currentSuppressed > 0 ? '+' : ''} בשנה

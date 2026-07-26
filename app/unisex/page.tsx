@@ -40,7 +40,7 @@ export default function UnisexPage() {
                   <div className="h-full bg-blue-400" style={{ width: `${mShare}%` }} />
                   <div className="h-full bg-pink-400" style={{ width: `${100 - mShare}%` }} />
                 </div>
-                <span className="w-28 shrink-0 text-left text-sm text-muted-foreground/80">
+                <span className="w-28 shrink-0 text-left text-sm text-muted-foreground">
                   {formatNumber(totalAll)} · {mShare}%/{100 - mShare}%
                 </span>
               </li>

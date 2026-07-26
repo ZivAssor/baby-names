@@ -82,7 +82,7 @@ export default function RankedNamesCard({
             <Link href={namePath(item.name)} className="text-foreground/90 hover:text-primary hover:underline">
               {item.name}
             </Link>
-            <span className="text-sm text-muted-foreground/80">{countDisplay(item)}</span>
+            <span className="text-sm text-muted-foreground">{countDisplay(item)}</span>
           </div>
         </li>
       ))}

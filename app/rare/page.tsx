@@ -34,7 +34,7 @@ export default function RarePage() {
               <Link href={namePath(name)} className="text-foreground hover:text-primary hover:underline">
                 {name}
               </Link>
-              <span className="ms-1.5 text-xs text-muted-foreground/80">
+              <span className="ms-1.5 text-xs text-muted-foreground">
                 {formatNumber(totalAll)} · {GENDER_TAG[gender]}
               </span>
             </li>

@@ -67,7 +67,7 @@ export default async function LetterPage({
               <Link href={namePath(name)} className="text-foreground/90 hover:text-primary hover:underline">
                 {name}
               </Link>
-              <span className="ms-1.5 text-xs text-muted-foreground/80">{formatNumber(totalAll)}</span>
+              <span className="ms-1.5 text-xs text-muted-foreground">{formatNumber(totalAll)}</span>
             </li>
           ))}
         </ul>

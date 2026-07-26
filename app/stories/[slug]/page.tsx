@@ -99,13 +99,13 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       <div className="flex flex-wrap gap-3">
         <Link
           href={namePath(story.name)}
-          className="rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
+          className="rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
         >
           לעמוד המלא של השם {story.name} ←
         </Link>
         <Link
           href="/stories"
-          className="rounded bg-secondary px-4 py-2 text-secondary-foreground hover:bg-accent"
+          className="rounded-lg bg-secondary px-4 py-2 text-secondary-foreground hover:bg-accent"
         >
           לכל סיפורי השמות
         </Link>

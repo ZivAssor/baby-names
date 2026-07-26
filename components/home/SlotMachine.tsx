@@ -142,10 +142,10 @@ export default function SlotMachine({ group }: SlotMachineProps) {
           else run();
         }}
         disabled={isRunning || (!index && !loadFailed)}
-        className={`mt-2 rounded px-4 py-2 ${
+        className={`mt-2 rounded-lg px-4 py-2 ${
           isRunning || (!index && !loadFailed)
             ? 'cursor-not-allowed bg-muted-foreground/40 text-card'
-            : 'bg-primary text-primary-foreground hover:bg-blue-700'
+            : 'bg-primary text-primary-foreground hover:bg-primary/90'
         }`}
       >
         {loadFailed ? 'נסו שוב' : index ? 'הפעלה' : 'טוען שמות...'}

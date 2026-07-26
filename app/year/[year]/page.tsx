@@ -67,7 +67,7 @@ function TopList({
           <Link href={namePath(n.name)} className="hover:text-primary hover:underline">
             {n.name}
           </Link>{' '}
-          <span className="text-sm text-muted-foreground/80">{countDisplay(n)}</span>
+          <span className="text-sm text-muted-foreground">{countDisplay(n)}</span>
         </li>
       ))}
     </ol>
@@ -147,7 +147,7 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                     <Link href={namePath(m.name)} className="hover:text-primary hover:underline">
                       {m.name}
                     </Link>{' '}
-                    <span className="text-sm text-muted-foreground/80">
+                    <span className="text-sm text-muted-foreground">
                       {m.previousSuppressed ? '1–4' : formatNumber(m.previous)} ←{' '}
                       {m.currentSuppressed ? '1–4' : formatNumber(m.current)}
                     </span>
@@ -163,7 +163,7 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                     <Link href={namePath(m.name)} className="hover:text-primary hover:underline">
                       {m.name}
                     </Link>{' '}
-                    <span className="text-sm text-muted-foreground/80">
+                    <span className="text-sm text-muted-foreground">
                       {m.previousSuppressed ? '1–4' : formatNumber(m.previous)} ←{' '}
                       {m.currentSuppressed ? '1–4' : formatNumber(m.current)}
                     </span>
