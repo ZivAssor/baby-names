@@ -23,13 +23,13 @@ export default function YearsIndexPage() {
   return (
     <div className="py-4">
       <h1 className="pb-1 text-3xl font-bold">השמות הפופולריים לפי שנה</h1>
-      <p className="pb-4 text-gray-600">
+      <p className="pb-4 text-muted-foreground">
         השם המוביל לבנים ולבנות (יהודים) בכל שנה. לחצו על שנה לרשימה המלאה, כולל כל קבוצות
         האוכלוסייה והמזנקים של אותה שנה.
       </p>
-      <div className="overflow-x-auto rounded-lg border bg-white">
+      <div className="overflow-x-auto rounded-xl border border-border bg-card shadow-sm">
         <table className="w-full text-right">
-          <thead className="bg-gray-50 text-sm text-gray-600">
+          <thead className="bg-muted text-sm text-muted-foreground">
             <tr>
               <th className="p-3">שנה</th>
               <th className="p-3">השם המוביל לבנים</th>
@@ -38,9 +38,9 @@ export default function YearsIndexPage() {
           </thead>
           <tbody>
             {years.map(({ year, topBoy, topGirl }) => (
-              <tr key={year} className="border-t border-gray-100 hover:bg-blue-50/40">
+              <tr key={year} className="border-t border-border hover:bg-accent/40">
                 <td className="p-3">
-                  <Link href={`/year/${year}`} className="font-semibold text-blue-700 hover:underline">
+                  <Link href={`/year/${year}`} className="font-semibold text-primary hover:underline">
                     {year}
                   </Link>
                 </td>

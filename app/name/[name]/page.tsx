@@ -77,7 +77,7 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-gray-500">
+      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-muted-foreground">
         <Link href="/" className="hover:underline">
           ראשי
         </Link>{' '}
@@ -89,17 +89,17 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
         <Link href={letterPath(letter)} className="hover:underline">
           שמות ב–{letter}
         </Link>{' '}
-        › <span className="text-gray-700">{detail.name}</span>
+        › <span className="text-foreground/90">{detail.name}</span>
       </nav>
 
       <h1 className="pb-1 text-3xl font-bold">השם {detail.name}</h1>
-      <p className="pb-4 text-gray-600">
+      <p className="pb-4 text-muted-foreground">
         סטטיסטיקות ומגמות על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949–2024
       </p>
 
-      <section className="mb-4 rounded-lg border bg-white p-6">
+      <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">עובדות על השם {detail.name}</h2>
-        <ul className="list-inside list-disc space-y-1.5 text-gray-800">
+        <ul className="list-inside list-disc space-y-1.5 text-foreground">
           {facts.map((fact) => (
             <li key={fact}>{fact}</li>
           ))}
@@ -108,25 +108,25 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
 
       <NameCharts detail={detail} />
 
-      <section className="mt-4 rounded-lg border bg-white p-6">
+      <section className="mt-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">שמות בפופולריות דומה</h2>
         <ul className="flex flex-wrap gap-2">
           {related.map(({ name, totalAll }) => (
             <li key={name}>
               <Link
                 href={namePath(name)}
-                className="inline-block rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                className="inline-block rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground hover:bg-accent hover:text-primary"
               >
                 {name}
-                <span className="ms-1.5 text-xs text-gray-400">{formatNumber(totalAll)}</span>
+                <span className="ms-1.5 text-xs text-muted-foreground/80">{formatNumber(totalAll)}</span>
               </Link>
             </li>
           ))}
         </ul>
-        <p className="mt-4 text-sm text-gray-500">
+        <p className="mt-4 text-sm text-muted-foreground">
           מקור הנתונים: קובץ השמות הפרטיים של הלמ״ס. קבוצות אוכלוסייה שבהן השם מופיע:{' '}
           {detail.groups.map((g) => GROUP_LABELS[g]).join(', ')}.{' '}
-          <Link href="/about" className="text-blue-700 hover:underline">
+          <Link href="/about" className="text-primary hover:underline">
             על הנתונים והמתודולוגיה
           </Link>
         </p>

@@ -38,7 +38,7 @@ export default function StoryChart({ name, gender, counts, eventYear, eventLabel
           ]}
         />
       </div>
-      <p className="mt-2 text-xs text-gray-500">
+      <p className="mt-2 text-xs text-muted-foreground">
         {counts[eventYear - FIRST_YEAR] === SUPPRESSED
           ? `${eventYear} — ${eventLabel}. `
           : `הנקודה הכתומה מסמנת את ${eventYear} — ${eventLabel}. `}

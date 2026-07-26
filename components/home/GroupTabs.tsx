@@ -11,8 +11,8 @@ export default function GroupTabs({ active }: { active: Group }) {
           aria-current={group === active ? 'page' : undefined}
           className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
             group === active
-              ? 'bg-blue-600 text-white'
-              : 'bg-white text-gray-700 hover:bg-blue-50'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-card text-foreground/90 hover:bg-accent'
           }`}
         >
           {GROUP_LABELS[group]}

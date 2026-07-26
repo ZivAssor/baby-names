@@ -46,7 +46,7 @@ export default async function LetterPage({
 
   return (
     <div className="py-4">
-      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-gray-500">
+      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-muted-foreground">
         <Link href="/" className="hover:underline">
           ראשי
         </Link>{' '}
@@ -54,20 +54,20 @@ export default async function LetterPage({
         <Link href="/names" className="hover:underline">
           כל השמות
         </Link>{' '}
-        › <span className="text-gray-700">האות {letter}</span>
+        › <span className="text-foreground/90">האות {letter}</span>
       </nav>
       <h1 className="pb-1 text-3xl font-bold">שמות שמתחילים באות {letter}</h1>
-      <p className="pb-4 text-gray-600">
+      <p className="pb-4 text-muted-foreground">
         {formatNumber(names.length)} שמות, מסודרים לפי מספר בעלי השם בישראל.
       </p>
-      <section className="rounded-lg border bg-white p-6">
+      <section className="rounded-xl border border-border bg-card shadow-sm p-6">
         <ul className="grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {names.map(({ name, totalAll }) => (
             <li key={name}>
-              <Link href={namePath(name)} className="text-gray-700 hover:text-blue-700 hover:underline">
+              <Link href={namePath(name)} className="text-foreground/90 hover:text-primary hover:underline">
                 {name}
               </Link>
-              <span className="ms-1.5 text-xs text-gray-400">{formatNumber(totalAll)}</span>
+              <span className="ms-1.5 text-xs text-muted-foreground/80">{formatNumber(totalAll)}</span>
             </li>
           ))}
         </ul>

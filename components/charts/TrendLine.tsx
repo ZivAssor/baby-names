@@ -33,6 +33,7 @@ export default function TrendLine({ datasets, percent, title }: TrendLineProps) 
           data: values,
           borderColor: color,
           backgroundColor: color,
+          borderWidth: 2,
           spanGaps: false,
           ...(pointRadius !== undefined ? { pointRadius, pointHoverRadius: pointRadius + 2 } : {}),
         })),
@@ -54,9 +55,16 @@ export default function TrendLine({ datasets, percent, title }: TrendLineProps) 
           },
         },
         scales: {
+          x: {
+            grid: { display: false },
+            ticks: { color: '#78716c', maxTicksLimit: 12 },
+          },
           y: {
             beginAtZero: true,
+            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+            border: { display: false },
             ticks: {
+              color: '#78716c',
               callback: (value) => (percent ? `${Number(value).toFixed(2)}%` : value),
             },
           },

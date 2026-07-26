@@ -60,7 +60,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-gray-500">
+      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-muted-foreground">
         <Link href="/" className="hover:underline">
           ראשי
         </Link>{' '}
@@ -68,13 +68,13 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
         <Link href="/stories" className="hover:underline">
           סיפורי שמות
         </Link>{' '}
-        › <span className="text-gray-700">{story.name}</span>
+        › <span className="text-foreground/90">{story.name}</span>
       </nav>
 
       <h1 className="pb-2 text-3xl font-bold">{story.title}</h1>
-      <p className="pb-4 text-lg text-gray-600">{story.hook}</p>
+      <p className="pb-4 text-lg text-muted-foreground">{story.hook}</p>
 
-      <section className="mb-4 rounded-lg border bg-white p-6">
+      <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <StoryChart
           name={story.name}
           gender={story.gender}
@@ -84,13 +84,13 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
         />
       </section>
 
-      <section className="mb-4 rounded-lg border bg-white p-6">
+      <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         {story.paragraphs.map((p) => (
-          <p key={p.slice(0, 30)} className="mb-3 leading-relaxed text-gray-800">
+          <p key={p.slice(0, 30)} className="mb-3 leading-relaxed text-foreground">
             {p}
           </p>
         ))}
-        <p className="mt-4 text-sm text-gray-500">
+        <p className="mt-4 text-sm text-muted-foreground">
           חשוב לומר: נתוני שמות מראים מתאם בין אירועים תרבותיים לבחירות של הורים — לא הוכחה
           לסיבתיות. הנתונים עצמם רשמיים ומדויקים (למ״ס), הפרשנות היא שלנו.
         </p>
@@ -99,25 +99,25 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       <div className="flex flex-wrap gap-3">
         <Link
           href={namePath(story.name)}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+          className="rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
         >
           לעמוד המלא של השם {story.name} ←
         </Link>
         <Link
           href="/stories"
-          className="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200"
+          className="rounded bg-secondary px-4 py-2 text-secondary-foreground hover:bg-accent"
         >
           לכל סיפורי השמות
         </Link>
       </div>
 
-      <section className="mt-6 text-sm text-gray-500">
-        <h2 className="mb-1 font-semibold text-gray-600">מקורות</h2>
+      <section className="mt-6 text-sm text-muted-foreground">
+        <h2 className="mb-1 font-semibold text-muted-foreground">מקורות</h2>
         <ul className="list-inside list-disc">
           <li>הלשכה המרכזית לסטטיסטיקה — קובץ השמות הפרטיים 1949–2024</li>
           {story.sources.map(({ label, url }) => (
             <li key={url}>
-              <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">
+              <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                 {label}
               </a>
             </li>

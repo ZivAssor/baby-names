@@ -21,37 +21,37 @@ export default function GenderHub({ gender }: { gender: Gender }) {
   return (
     <div className="py-4">
       <h1 className="pb-1 text-3xl font-bold">שמות ל{label === 'בנים' ? 'בן' : 'בת'} — כל הנתונים</h1>
-      <p className="pb-4 text-gray-600">
+      <p className="pb-4 text-muted-foreground">
         מחפשים שם ל{label === 'בנים' ? 'בן' : 'בת'}? כאן תמצאו את השמות המובילים עכשיו, הקלאסיקות
         של כל הזמנים והשמות שמתפרצים בדיוק ברגעים אלה — הכול מנתוני הלמ״ס, {LAST_YEAR}–1949.
       </p>
 
       <div className="mb-4 grid gap-4 md:grid-cols-2">
-        <section className="rounded-lg border bg-white p-6">
+        <section className="rounded-xl border border-border bg-card shadow-sm p-6">
           <h2 className="mb-3 text-xl font-bold">המובילים ב-{LAST_YEAR}</h2>
           <ol className="list-inside list-decimal space-y-1">
             {current.map((n) => (
               <li key={n.name}>
-                <Link href={namePath(n.name)} className="text-gray-800 hover:text-blue-700 hover:underline">
+                <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>{' '}
-                <span className="text-sm text-gray-400">{countDisplay(n)}</span>
+                <span className="text-sm text-muted-foreground/80">{countDisplay(n)}</span>
               </li>
             ))}
           </ol>
         </section>
 
-        <section className="rounded-lg border bg-white p-6">
+        <section className="rounded-xl border border-border bg-card shadow-sm p-6">
           <h2 className="mb-3 text-xl font-bold">
             המובילים בעשור האחרון ({DEFAULT_RANGE.start}–{DEFAULT_RANGE.end})
           </h2>
           <ol className="list-inside list-decimal space-y-1">
             {decade.map((n) => (
               <li key={n.name}>
-                <Link href={namePath(n.name)} className="text-gray-800 hover:text-blue-700 hover:underline">
+                <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>{' '}
-                <span className="text-sm text-gray-400">{countDisplay(n)}</span>
+                <span className="text-sm text-muted-foreground/80">{countDisplay(n)}</span>
               </li>
             ))}
           </ol>
@@ -59,9 +59,9 @@ export default function GenderHub({ gender }: { gender: Gender }) {
       </div>
 
       <div className="mb-4 grid gap-4 md:grid-cols-2">
-        <section className="rounded-lg border bg-white p-6">
+        <section className="rounded-xl border border-border bg-card shadow-sm p-6">
           <h2 className="mb-3 text-xl font-bold">הקלאסיקות של כל הזמנים</h2>
-          <p className="mb-2 text-sm text-gray-500">
+          <p className="mb-2 text-sm text-muted-foreground">
             לפי מספר תושבי ישראל הנושאים את השם כיום, בכל קבוצות האוכלוסייה
           </p>
           <ul className="flex flex-wrap gap-2">
@@ -69,28 +69,28 @@ export default function GenderHub({ gender }: { gender: Gender }) {
               <li key={name}>
                 <Link
                   href={namePath(name)}
-                  className="inline-block rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                  className="inline-block rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground hover:bg-accent hover:text-primary"
                 >
                   {name}
-                  <span className="ms-1.5 text-xs text-gray-400">{formatNumber(total)}</span>
+                  <span className="ms-1.5 text-xs text-muted-foreground/80">{formatNumber(total)}</span>
                 </Link>
               </li>
             ))}
           </ul>
         </section>
 
-        <section className="rounded-lg border bg-white p-6">
+        <section className="rounded-xl border border-border bg-card shadow-sm p-6">
           <h2 className="mb-3 text-xl font-bold">מתפרצים עכשיו</h2>
-          <p className="mb-2 text-sm text-gray-500">
+          <p className="mb-2 text-sm text-muted-foreground">
             ממוצע {TREND_CURRENT[0]}–{TREND_CURRENT[1]} לעומת {TREND_PAST[0]}–{TREND_PAST[1]}
           </p>
           <ul className="space-y-1.5">
             {risers.map((n) => (
               <li key={n.name} className="flex items-center justify-between">
-                <Link href={namePath(n.name)} className="text-gray-800 hover:text-blue-700 hover:underline">
+                <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>
-                <span className="text-sm text-gray-400">
+                <span className="text-sm text-muted-foreground/80">
                   {formatNumber(n.past)}
                   {n.pastSuppressed > 0 ? '+' : ''} ← {formatNumber(n.current)}
                   {n.currentSuppressed > 0 ? '+' : ''} בשנה
@@ -99,16 +99,16 @@ export default function GenderHub({ gender }: { gender: Gender }) {
             ))}
           </ul>
           <p className="mt-3 text-sm">
-            <Link href="/trending" className="text-blue-700 hover:underline">
+            <Link href="/trending" className="text-primary hover:underline">
               לכל השמות המזנקים והדועכים ←
             </Link>
           </p>
         </section>
       </div>
 
-      <section className="rounded-lg border bg-white p-6">
+      <section className="rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">עוד דרכים למצוא שם</h2>
-        <ul className="flex flex-wrap gap-3 text-blue-700">
+        <ul className="flex flex-wrap gap-3 text-primary">
           <li>
             <Link href="/unisex" className="hover:underline">
               שמות יוניסקס

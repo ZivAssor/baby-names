@@ -3,6 +3,14 @@
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { FaFemale, FaMale } from 'react-icons/fa';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { FIRST_YEAR, LAST_YEAR, namePath, type Group } from '@/lib/constants';
 import { countDisplay } from '@/lib/format';
 import type { RankedName } from '@/lib/data';
@@ -66,15 +74,15 @@ export default function RankedNamesCard({
   const renderList = (names: RankedName[], Icon: typeof FaMale, iconClass: string, bgClass: string) => (
     <ul>
       {names.map((item) => (
-        <li key={item.name} className="my-3 flex items-center rounded-lg bg-gray-50 p-2">
+        <li key={item.name} className="my-3 flex items-center rounded-lg bg-muted/60 p-2">
           <div className={`${bgClass} rounded-lg p-3`}>
             <Icon className={iconClass} aria-hidden />
           </div>
           <div className="flex w-full items-center justify-between pe-2 ps-4">
-            <Link href={namePath(item.name)} className="text-gray-700 hover:text-blue-700 hover:underline">
+            <Link href={namePath(item.name)} className="text-foreground/90 hover:text-primary hover:underline">
               {item.name}
             </Link>
-            <span className="text-sm text-gray-400">{countDisplay(item)}</span>
+            <span className="text-sm text-muted-foreground/80">{countDisplay(item)}</span>
           </div>
         </li>
       ))}
@@ -82,12 +90,12 @@ export default function RankedNamesCard({
   );
 
   return (
-    <section className="relative w-full rounded-lg border bg-white p-4">
+    <section className="relative w-full rounded-xl border border-border bg-card shadow-sm p-4">
       <h2 className="text-center text-2xl font-bold">
         {title}{' '}
         <button
           type="button"
-          className="cursor-pointer text-blue-700 hover:underline"
+          className="cursor-pointer text-primary hover:underline"
           onClick={() => {
             setDraft(range);
             setPickerOpen((v) => !v);
@@ -96,49 +104,53 @@ export default function RankedNamesCard({
           {range.start}–{range.end}
         </button>
       </h2>
-      <p className="mb-4 text-center text-sm text-gray-600">אפשר ללחוץ על השנים כדי לשנות אותן</p>
+      <p className="mb-4 text-center text-sm text-muted-foreground">אפשר ללחוץ על השנים כדי לשנות אותן</p>
 
       {pickerOpen && (
-        <div className="mb-4 flex flex-wrap items-end justify-center gap-3 rounded-lg bg-gray-50 p-3">
-          <label className="text-sm">
-            משנת
-            <select
-              className="ms-2 rounded border border-gray-300 p-1"
-              value={draft.start}
-              onChange={(e) => setDraft((d) => ({ ...d, start: Number(e.target.value) }))}
+        <div className="mb-4 flex flex-wrap items-center justify-center gap-3 rounded-lg bg-muted/60 p-3">
+          <div className="flex items-center gap-2 text-sm">
+            <span>משנת</span>
+            <Select
+              value={String(draft.start)}
+              onValueChange={(v) => setDraft((d) => ({ ...d, start: Number(v) }))}
             >
-              {YEARS.map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="text-sm">
-            עד שנת
-            <select
-              className="ms-2 rounded border border-gray-300 p-1"
-              value={draft.end}
-              onChange={(e) => setDraft((d) => ({ ...d, end: Number(e.target.value) }))}
+              <SelectTrigger className="w-24" aria-label="שנת התחלה">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="max-h-64">
+                {YEARS.map((y) => (
+                  <SelectItem key={y} value={String(y)}>
+                    {y}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center gap-2 text-sm">
+            <span>עד שנת</span>
+            <Select
+              value={String(draft.end)}
+              onValueChange={(v) => setDraft((d) => ({ ...d, end: Number(v) }))}
             >
-              {YEARS.map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))}
-            </select>
-          </label>
-          <button
-            type="button"
-            onClick={applyRange}
-            className="rounded bg-blue-600 px-4 py-1.5 text-white hover:bg-blue-700"
-          >
+              <SelectTrigger className="w-24" aria-label="שנת סיום">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="max-h-64">
+                {YEARS.map((y) => (
+                  <SelectItem key={y} value={String(y)}>
+                    {y}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <Button size="sm" onClick={applyRange}>
             אישור
-          </button>
+          </Button>
         </div>
       )}
 
-      {error && <p className="mb-2 text-center text-sm text-red-600">שגיאה בטעינת הנתונים, נסו שוב</p>}
+      {error && <p className="mb-2 text-center text-sm text-destructive">שגיאה בטעינת הנתונים, נסו שוב</p>}
 
       <div className={`grid grid-cols-2 gap-4 ${loading ? 'opacity-50' : ''}`}>
         <div>
@@ -152,7 +164,7 @@ export default function RankedNamesCard({
       </div>
 
       {anySuppressed && (
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-muted-foreground">
           + פירושו ערך מינימלי: בחלק מהשנים הלמ״ס מסתירה ערכים הקטנים מ-5 מטעמי פרטיות.
         </p>
       )}

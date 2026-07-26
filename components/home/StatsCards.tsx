@@ -7,14 +7,14 @@ export default function StatsCards({ group }: { group: Group }) {
   const cards = [
     { value: formatNumber(stats.boyNames), label: 'שמות של בנים', color: 'text-blue-500' },
     { value: formatNumber(stats.girlNames), label: 'שמות של בנות', color: 'text-pink-500' },
-    { value: `${FIRST_YEAR}–${LAST_YEAR}`, label: 'תקופת זמן', color: 'text-gray-900' },
+    { value: `${FIRST_YEAR}–${LAST_YEAR}`, label: 'תקופת זמן', color: 'text-foreground' },
   ];
   return (
     <div className="grid gap-4 py-4 sm:grid-cols-3">
       {cards.map(({ value, label, color }) => (
-        <div key={label} className="flex w-full flex-col rounded-lg border bg-white p-4">
+        <div key={label} className="flex w-full flex-col rounded-xl border border-border bg-card shadow-sm p-4">
           <p className={`text-2xl font-bold ${color}`}>{value}</p>
-          <p className="text-gray-600">{label}</p>
+          <p className="text-muted-foreground">{label}</p>
         </div>
       ))}
     </div>

@@ -31,27 +31,27 @@ export default function GenderSplitCard({ group, initial }: GenderSplitCardProps
   const { boys, girls } = groupTotals(detail, group);
 
   return (
-    <section className="relative w-full rounded-lg border bg-white p-4">
+    <section className="relative w-full rounded-xl border border-border bg-card shadow-sm p-4">
       <h2 className="mb-4 text-center text-2xl font-bold">בן או בת?</h2>
       <NameSearch mask={maskFor(group)} onSelect={selectName} label="חיפוש שם להשוואת מגדר" />
-      {error && <p className="mt-2 text-center text-sm text-red-600">שגיאה בטעינת הנתונים, נסו שוב</p>}
+      {error && <p className="mt-2 text-center text-sm text-destructive">שגיאה בטעינת הנתונים, נסו שוב</p>}
       <div className={loading ? 'opacity-50' : ''}>
         <GenderBar name={detail.name} boys={boys} girls={girls} />
-        <div className="mt-4 border-t border-gray-200 p-4">
+        <div className="mt-4 border-t border-border p-4">
           <h3 className="mb-2 text-xl font-bold">
-            <Link href={namePath(detail.name)} className="hover:text-blue-700 hover:underline">
+            <Link href={namePath(detail.name)} className="hover:text-primary hover:underline">
               {detail.name}
             </Link>
           </h3>
-          <p className="mb-1 text-gray-700">
+          <p className="mb-1 text-foreground/90">
             סה״כ בנים עם השם הזה: <strong>{formatNumber(boys)}</strong>
           </p>
-          <p className="mb-1 text-gray-700">
+          <p className="mb-1 text-foreground/90">
             סה״כ בנות עם השם הזה: <strong>{formatNumber(girls)}</strong>
           </p>
-          <p className="mt-3 text-sm text-gray-500">
+          <p className="mt-3 text-sm text-muted-foreground">
             הנתונים כוללים את כל בעלי השם הרשומים במרשם האוכלוסין.{' '}
-            <Link href={namePath(detail.name)} className="text-blue-700 hover:underline">
+            <Link href={namePath(detail.name)} className="text-primary hover:underline">
               לעמוד המלא של השם {detail.name} ←
             </Link>
           </p>

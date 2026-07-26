@@ -23,14 +23,19 @@ export default function HomeView({ group }: { group: Group }) {
 
   return (
     <>
-      <h1 className="pt-4 text-center text-2xl font-bold">
-        {SITE_NAME} <span aria-hidden>🇮🇱</span>
-        {group !== 'jewish' && (
-          <span className="block pt-1 text-lg font-semibold text-gray-600">
-            שמות {GROUP_LABELS[group]}
-          </span>
-        )}
-      </h1>
+      <div className="pt-8 pb-2 text-center">
+        <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+          {group === 'jewish' ? (
+            <>איזה שם ניתן הכי הרבה בישראל?</>
+          ) : (
+            <>שמות {GROUP_LABELS[group]} בישראל</>
+          )}
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
+          כל השמות הפרטיים בישראל מ-1949 ועד היום, על בסיס הנתונים הרשמיים של הלשכה
+          המרכזית לסטטיסטיקה — מגמות, השוואות וסיפורים.
+        </p>
+      </div>
       <GroupTabs active={group} />
       <StatsCards group={group} />
       <div className="grid grid-cols-1 gap-4 py-2 md:grid-cols-2 lg:grid-cols-3">

@@ -26,21 +26,21 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="mt-8 border-t border-gray-200 bg-white">
+    <footer className="mt-8 border-t border-border bg-card">
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-8 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <p className="mb-3 text-lg font-bold">{SITE_NAME}</p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-muted-foreground">
             סטטיסטיקות על שמות פרטיים בישראל, על בסיס נתוני הלשכה המרכזית לסטטיסטיקה,
             1949–2024.
           </p>
         </div>
         <nav aria-label="קבוצות אוכלוסייה">
           <p className="mb-3 font-semibold">שמות לפי קבוצת אוכלוסייה</p>
-          <ul className="space-y-1.5 text-sm text-gray-600">
+          <ul className="space-y-1.5 text-sm text-muted-foreground">
             {GROUPS.map((group) => (
               <li key={group}>
-                <Link href={groupPath(group)} className="hover:text-blue-700 hover:underline">
+                <Link href={groupPath(group)} className="hover:text-primary hover:underline">
                   שמות {GROUP_LABELS[group]}
                 </Link>
               </li>
@@ -49,29 +49,29 @@ export default function Footer() {
         </nav>
         <nav aria-label="מצאו שם">
           <p className="mb-3 font-semibold">מצאו שם</p>
-          <ul className="space-y-1.5 text-sm text-gray-600">
+          <ul className="space-y-1.5 text-sm text-muted-foreground">
             <li>
-              <Link href="/boys" className="hover:text-blue-700 hover:underline">
+              <Link href="/boys" className="hover:text-primary hover:underline">
                 שמות לבנים
               </Link>
             </li>
             <li>
-              <Link href="/girls" className="hover:text-blue-700 hover:underline">
+              <Link href="/girls" className="hover:text-primary hover:underline">
                 שמות לבנות
               </Link>
             </li>
             <li>
-              <Link href="/unisex" className="hover:text-blue-700 hover:underline">
+              <Link href="/unisex" className="hover:text-primary hover:underline">
                 שמות יוניסקס
               </Link>
             </li>
             <li>
-              <Link href="/rare" className="hover:text-blue-700 hover:underline">
+              <Link href="/rare" className="hover:text-primary hover:underline">
                 שמות נדירים
               </Link>
             </li>
             <li>
-              <Link href="/years" className="hover:text-blue-700 hover:underline">
+              <Link href="/years" className="hover:text-primary hover:underline">
                 השמות הפופולריים לפי שנה
               </Link>
             </li>
@@ -79,35 +79,35 @@ export default function Footer() {
         </nav>
         <nav aria-label="ניווט">
           <p className="mb-3 font-semibold">ניווט</p>
-          <ul className="space-y-1.5 text-sm text-gray-600">
+          <ul className="space-y-1.5 text-sm text-muted-foreground">
             <li>
-              <Link href="/names" className="hover:text-blue-700 hover:underline">
+              <Link href="/names" className="hover:text-primary hover:underline">
                 כל השמות לפי א״ב
               </Link>
             </li>
             <li>
-              <Link href="/trending" className="hover:text-blue-700 hover:underline">
+              <Link href="/trending" className="hover:text-primary hover:underline">
                 מגמות — מזנקים ודועכים
               </Link>
             </li>
             <li>
-              <Link href="/stories" className="hover:text-blue-700 hover:underline">
+              <Link href="/stories" className="hover:text-primary hover:underline">
                 סיפורי שמות
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-blue-700 hover:underline">
+              <Link href="/about" className="hover:text-primary hover:underline">
                 על הנתונים והמתודולוגיה
               </Link>
             </li>
           </ul>
         </nav>
       </div>
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 border-t border-gray-100 px-4 py-4 md:flex-row">
-        <p className="text-sm text-gray-500">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 border-t border-border px-4 py-4 md:flex-row">
+        <p className="text-sm text-muted-foreground">
           © <CurrentYear /> כל הזכויות שמורות.
         </p>
-        <div className="flex gap-4 text-gray-700">
+        <div className="flex gap-4 text-foreground/90">
           {SOCIALS.map(({ label, href, Icon, hover }) => (
             <a
               key={label}

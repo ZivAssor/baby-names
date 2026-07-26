@@ -59,15 +59,15 @@ function TopList({
   limit: number;
 }) {
   const names = topNames(group, gender, year, year, limit);
-  if (names.length === 0) return <p className="text-sm text-gray-500">אין נתונים זמינים</p>;
+  if (names.length === 0) return <p className="text-sm text-muted-foreground">אין נתונים זמינים</p>;
   return (
     <ol className="list-inside list-decimal space-y-1">
       {names.map((n) => (
-        <li key={n.name} className="text-gray-800">
-          <Link href={namePath(n.name)} className="hover:text-blue-700 hover:underline">
+        <li key={n.name} className="text-foreground">
+          <Link href={namePath(n.name)} className="hover:text-primary hover:underline">
             {n.name}
           </Link>{' '}
-          <span className="text-sm text-gray-400">{countDisplay(n)}</span>
+          <span className="text-sm text-muted-foreground/80">{countDisplay(n)}</span>
         </li>
       ))}
     </ol>
@@ -86,7 +86,7 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
 
   return (
     <div className="py-4">
-      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-gray-500">
+      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-muted-foreground">
         <Link href="/" className="hover:underline">
           ראשי
         </Link>{' '}
@@ -94,16 +94,16 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
         <Link href="/years" className="hover:underline">
           שמות לפי שנה
         </Link>{' '}
-        › <span className="text-gray-700">{year}</span>
+        › <span className="text-foreground/90">{year}</span>
       </nav>
 
       <h1 className="pb-1 text-3xl font-bold">השמות הפופולריים בישראל ב-{year}</h1>
-      <p className="pb-4 text-gray-600">
+      <p className="pb-4 text-muted-foreground">
         בשנת {year} נולדו בישראל לפחות {formatNumber(totalVisible)} תינוקות ששמם מופיע
         בנתוני הלמ״ס. אלו השמות שבחרו ההורים.
       </p>
 
-      <section className="mb-4 rounded-lg border bg-white p-6">
+      <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">עשרת השמות המובילים — יהודים</h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -119,7 +119,7 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
 
       <section className="mb-4 grid gap-4 md:grid-cols-3">
         {GROUPS.filter((g) => g !== 'jewish').map((group) => (
-          <div key={group} className="rounded-lg border bg-white p-6">
+          <div key={group} className="rounded-xl border border-border bg-card shadow-sm p-6">
             <h2 className="mb-3 text-lg font-bold">{GROUP_LABELS[group]}</h2>
             <div className="grid grid-cols-2 gap-3">
               {(['m', 'f'] as Gender[]).map((gender) => (
@@ -136,18 +136,18 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
       </section>
 
       {(movers.risers.length > 0 || moversF.risers.length > 0) && (
-        <section className="mb-4 rounded-lg border bg-white p-6">
+        <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
           <h2 className="mb-3 text-xl font-bold">המזנקים של {year} לעומת {year - 1} — יהודים</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <h3 className="mb-2 font-semibold text-blue-600">בנים</h3>
               <ul className="space-y-1">
                 {movers.risers.map((m) => (
-                  <li key={m.name} className="text-gray-800">
-                    <Link href={namePath(m.name)} className="hover:text-blue-700 hover:underline">
+                  <li key={m.name} className="text-foreground">
+                    <Link href={namePath(m.name)} className="hover:text-primary hover:underline">
                       {m.name}
                     </Link>{' '}
-                    <span className="text-sm text-gray-400">
+                    <span className="text-sm text-muted-foreground/80">
                       {m.previousSuppressed ? '1–4' : formatNumber(m.previous)} ←{' '}
                       {m.currentSuppressed ? '1–4' : formatNumber(m.current)}
                     </span>
@@ -159,11 +159,11 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
               <h3 className="mb-2 font-semibold text-pink-600">בנות</h3>
               <ul className="space-y-1">
                 {moversF.risers.map((m) => (
-                  <li key={m.name} className="text-gray-800">
-                    <Link href={namePath(m.name)} className="hover:text-blue-700 hover:underline">
+                  <li key={m.name} className="text-foreground">
+                    <Link href={namePath(m.name)} className="hover:text-primary hover:underline">
                       {m.name}
                     </Link>{' '}
-                    <span className="text-sm text-gray-400">
+                    <span className="text-sm text-muted-foreground/80">
                       {m.previousSuppressed ? '1–4' : formatNumber(m.previous)} ←{' '}
                       {m.currentSuppressed ? '1–4' : formatNumber(m.current)}
                     </span>
@@ -175,7 +175,7 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
         </section>
       )}
 
-      <nav className="flex justify-between text-blue-700">
+      <nav className="flex justify-between text-primary">
         {year > FIRST_YEAR ? (
           <Link href={`/year/${year - 1}`} className="hover:underline">
             → {year - 1}

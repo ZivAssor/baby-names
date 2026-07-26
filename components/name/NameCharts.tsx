@@ -34,13 +34,13 @@ export default function NameCharts({ detail }: { detail: NameDetail }) {
 
   return (
     <div className="grid gap-4 lg:grid-cols-3">
-      <section className="rounded-lg border bg-white p-4 lg:col-span-2">
+      <section className="rounded-xl border border-border bg-card shadow-sm p-4 lg:col-span-2">
         <div className="mb-2 flex items-center justify-between">
           <h2 className="text-xl font-bold">השם {detail.name} לאורך השנים</h2>
           <button
             type="button"
             onClick={() => setPercent((v) => !v)}
-            className="rounded bg-blue-600 px-4 py-1.5 text-white hover:bg-blue-700"
+            className="rounded bg-primary px-4 py-1.5 text-primary-foreground hover:bg-primary/90"
             aria-label={percent ? 'הצגת מספרים מוחלטים' : 'הצגת אחוזים'}
           >
             {percent ? '%' : '#'}
@@ -57,12 +57,12 @@ export default function NameCharts({ detail }: { detail: NameDetail }) {
             }
           />
         </div>
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-muted-foreground">
           קטעים חסרים בגרף הם שנים שבהן פחות מ-5 נולדים קיבלו את השם — הלמ״ס מסתירה ערכים אלו
           מטעמי פרטיות.
         </p>
       </section>
-      <section className="rounded-lg border bg-white p-4">
+      <section className="rounded-xl border border-border bg-card shadow-sm p-4">
         <h2 className="mb-2 text-xl font-bold">בן או בת?</h2>
         <GenderBar name={detail.name} boys={detail.totalM} girls={detail.totalF} />
       </section>

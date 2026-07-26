@@ -3,7 +3,7 @@ import { FIRST_YEAR, LAST_YEAR } from '@/lib/constants';
 
 export default function DataInfoCard() {
   return (
-    <section className="rounded-md bg-white p-6 shadow-md">
+    <section className="rounded-xl border border-border bg-card p-6 shadow-sm">
       <h2 className="mb-4 text-2xl font-bold">כמה מילים על הדאטה</h2>
       <p className="mb-2 text-base">
         האתר מציג נתונים על שמות פרטיים של תושבי ישראל שנולדו בין {FIRST_YEAR} ל-{LAST_YEAR},
@@ -15,7 +15,7 @@ export default function DataInfoCard() {
           href="https://www.cbs.gov.il/he/Pages/search/TableMaps.aspx?CbsSubject=שמות"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 underline hover:text-blue-800"
+          className="text-primary underline hover:text-primary/80"
         >
           כאן
         </a>
@@ -24,7 +24,7 @@ export default function DataInfoCard() {
       <p className="text-base">
         בשנים שבהן שם ניתן פחות מ-5 פעמים, הלמ״ס מסתירה את הערך מטעמי פרטיות. בניגוד לגרסה
         הקודמת של האתר, אנחנו לא סופרים שנים כאלה כאפס אלא מסמנים אותן בנפרד — פרטים מלאים{' '}
-        <Link href="/about" className="text-blue-600 underline hover:text-blue-800">
+        <Link href="/about" className="text-primary underline hover:text-primary/80">
           בעמוד על הנתונים
         </Link>
         .

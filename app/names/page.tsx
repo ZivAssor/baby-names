@@ -19,22 +19,22 @@ export default function NamesIndexPage() {
   return (
     <div className="py-4">
       <h1 className="pb-1 text-3xl font-bold">כל השמות לפי א״ב</h1>
-      <p className="pb-4 text-gray-600">
+      <p className="pb-4 text-muted-foreground">
         {formatNumber(totals.names)} שמות פרטיים מנתוני הלשכה המרכזית לסטטיסטיקה — לחצו על אות
         כדי לעיין, או על שם כדי לראות את הסטטיסטיקות המלאות שלו.
       </p>
 
-      <section className="mb-4 rounded-lg border bg-white p-6">
+      <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">לפי אות</h2>
         <ul className="flex flex-wrap gap-2">
           {letters.map(({ letter, count }) => (
             <li key={letter}>
               <Link
                 href={letterPath(letter)}
-                className="inline-block rounded-lg bg-gray-100 px-4 py-2 text-lg font-semibold text-gray-800 hover:bg-blue-50 hover:text-blue-700"
+                className="inline-block rounded-lg bg-secondary px-4 py-2 text-lg font-semibold text-secondary-foreground hover:bg-accent hover:text-primary"
               >
                 {letter}
-                <span className="ms-1.5 text-xs font-normal text-gray-400">
+                <span className="ms-1.5 text-xs font-normal text-muted-foreground/80">
                   {formatNumber(count)}
                 </span>
               </Link>
@@ -43,17 +43,17 @@ export default function NamesIndexPage() {
         </ul>
       </section>
 
-      <section className="rounded-lg border bg-white p-6">
+      <section className="rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">השמות הנפוצים בישראל</h2>
         <ul className="flex flex-wrap gap-2">
           {popular.map(([name, total]) => (
             <li key={name}>
               <Link
                 href={namePath(name)}
-                className="inline-block rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                className="inline-block rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground hover:bg-accent hover:text-primary"
               >
                 {name}
-                <span className="ms-1.5 text-xs text-gray-400">{formatNumber(total)}</span>
+                <span className="ms-1.5 text-xs text-muted-foreground/80">{formatNumber(total)}</span>
               </Link>
             </li>
           ))}

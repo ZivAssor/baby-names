@@ -41,5 +41,7 @@ export function letterPath(letter: string): string {
   return `/names/${encodeURIComponent(letter)}`;
 }
 
-export const BOY_COLOR = 'rgba(53, 162, 235, 0.7)';
-export const GIRL_COLOR = 'rgba(255, 99, 132, 0.7)';
+// Validated categorical palette (dataviz six-checks, light surface):
+// boys #2563eb, girls #ec4899, event highlight #f59e0b
+export const BOY_COLOR = 'rgba(37, 99, 235, 0.9)';
+export const GIRL_COLOR = 'rgba(236, 72, 153, 0.9)';

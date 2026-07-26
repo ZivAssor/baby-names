@@ -85,7 +85,7 @@ export default function SlotMachine({ group }: SlotMachineProps) {
   ];
 
   return (
-    <section className="flex w-full flex-col items-center justify-center rounded-lg border bg-white p-4">
+    <section className="flex w-full flex-col items-center justify-center rounded-xl border border-border bg-card shadow-sm p-4">
       <h2 className="mb-4 text-center text-2xl font-bold">רולטת השמות</h2>
       <p>מרגישים ברי מזל? 🍀</p>
       <p className="pb-4">נסו את רולטת השמות</p>
@@ -93,7 +93,7 @@ export default function SlotMachine({ group }: SlotMachineProps) {
         {slots.map((slot, i) => (
           <div
             key={i}
-            className="relative flex h-20 w-32 items-center justify-center overflow-hidden rounded border-2 border-gray-200 bg-white p-4"
+            className="relative flex h-20 w-32 items-center justify-center overflow-hidden rounded border-2 border-border bg-card p-4"
           >
             <AnimatePresence>
               {slot.name && (
@@ -108,7 +108,7 @@ export default function SlotMachine({ group }: SlotMachineProps) {
                   {isRunning ? (
                     <span>{slot.name}</span>
                   ) : (
-                    <Link href={namePath(slot.name)} className="hover:text-blue-700 hover:underline">
+                    <Link href={namePath(slot.name)} className="hover:text-primary hover:underline">
                       {slot.name}
                     </Link>
                   )}
@@ -133,7 +133,7 @@ export default function SlotMachine({ group }: SlotMachineProps) {
         ))}
       </fieldset>
       {loadFailed && (
-        <p className="mb-2 text-sm text-red-600">שגיאה בטעינת רשימת השמות</p>
+        <p className="mb-2 text-sm text-destructive">שגיאה בטעינת רשימת השמות</p>
       )}
       <button
         type="button"
@@ -144,8 +144,8 @@ export default function SlotMachine({ group }: SlotMachineProps) {
         disabled={isRunning || (!index && !loadFailed)}
         className={`mt-2 rounded px-4 py-2 ${
           isRunning || (!index && !loadFailed)
-            ? 'cursor-not-allowed bg-gray-400 text-white'
-            : 'bg-blue-600 text-white hover:bg-blue-700'
+            ? 'cursor-not-allowed bg-muted-foreground/40 text-card'
+            : 'bg-primary text-primary-foreground hover:bg-blue-700'
         }`}
       >
         {loadFailed ? 'נסו שוב' : index ? 'הפעלה' : 'טוען שמות...'}

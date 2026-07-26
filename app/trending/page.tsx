@@ -21,9 +21,9 @@ export const metadata: Metadata = pageMetadata({
 function TrendTable({ gender }: { gender: Gender }) {
   const { risers, fallers, windows } = trendingNames('jewish', gender, 10);
   return (
-    <div className="rounded-lg border bg-white p-6">
+    <div className="rounded-xl border border-border bg-card shadow-sm p-6">
       <h2 className="mb-1 text-xl font-bold">{GENDER_LABELS[gender]}</h2>
-      <p className="mb-3 text-sm text-gray-500">
+      <p className="mb-3 text-sm text-muted-foreground">
         ממוצע שנתי {windows.current[0]}–{windows.current[1]} לעומת {windows.past[0]}–
         {windows.past[1]}
       </p>
@@ -33,10 +33,10 @@ function TrendTable({ gender }: { gender: Gender }) {
           <ul className="space-y-1.5">
             {risers.map((n) => (
               <li key={n.name} className="flex items-center justify-between">
-                <Link href={namePath(n.name)} className="text-gray-800 hover:text-blue-700 hover:underline">
+                <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>
-                <span className="text-sm text-gray-400">
+                <span className="text-sm text-muted-foreground/80">
                   {formatNumber(n.past)}
                   {n.pastSuppressed > 0 ? '+' : ''} ← {formatNumber(n.current)}
                   {n.currentSuppressed > 0 ? '+' : ''} (פי{' '}
@@ -51,10 +51,10 @@ function TrendTable({ gender }: { gender: Gender }) {
           <ul className="space-y-1.5">
             {fallers.map((n) => (
               <li key={n.name} className="flex items-center justify-between">
-                <Link href={namePath(n.name)} className="text-gray-800 hover:text-blue-700 hover:underline">
+                <Link href={namePath(n.name)} className="text-foreground hover:text-primary hover:underline">
                   {n.name}
                 </Link>
-                <span className="text-sm text-gray-400">
+                <span className="text-sm text-muted-foreground/80">
                   {formatNumber(n.past)}
                   {n.pastSuppressed > 0 ? '+' : ''} ← {formatNumber(n.current)}
                   {n.currentSuppressed > 0 ? '+' : ''}
@@ -72,7 +72,7 @@ export default function TrendingPage() {
   return (
     <div className="py-4">
       <h1 className="pb-1 text-3xl font-bold">השמות המזנקים והדועכים בישראל</h1>
-      <p className="pb-4 text-gray-600">
+      <p className="pb-4 text-muted-foreground">
         השוואה של ממוצע הנולדים בשנים {TREND_CURRENT[0]}–{TREND_CURRENT[1]} מול{' '}
         {TREND_PAST[0]}–{TREND_PAST[1]}, מנתוני הלמ״ס. שמות עם מעט מדי נולדים לא נכללים
         (הסף מותאם לגודל כל קבוצת אוכלוסייה), כדי שהרשימה תשקף מגמות אמיתיות ולא רעש.
@@ -84,7 +84,7 @@ export default function TrendingPage() {
         <TrendTable gender="f" />
       </div>
 
-      <section className="mb-4 rounded-lg border bg-white p-6">
+      <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">המזנק המוביל בכל קבוצת אוכלוסייה</h2>
         <ul className="grid gap-2 sm:grid-cols-2">
           {GROUPS.map((group) =>
@@ -92,12 +92,12 @@ export default function TrendingPage() {
               const top = trendingNames(group, gender, 1).risers[0];
               if (!top) return null;
               return (
-                <li key={`${group}-${gender}`} className="text-gray-800">
+                <li key={`${group}-${gender}`} className="text-foreground">
                   {GROUP_LABELS[group]} · {GENDER_LABELS[gender]}:{' '}
-                  <Link href={namePath(top.name)} className="font-semibold text-blue-700 hover:underline">
+                  <Link href={namePath(top.name)} className="font-semibold text-primary hover:underline">
                     {top.name}
                   </Link>{' '}
-                  <span className="text-sm text-gray-400">
+                  <span className="text-sm text-muted-foreground/80">
                     ({formatNumber(top.past)}
                     {top.pastSuppressed > 0 ? '+' : ''} ← {formatNumber(top.current)}
                     {top.currentSuppressed > 0 ? '+' : ''})
@@ -109,9 +109,9 @@ export default function TrendingPage() {
         </ul>
       </section>
 
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-muted-foreground">
         רוצים לראות איך מגמות כאלה נראות לאורך עשורים?{' '}
-        <Link href="/stories" className="text-blue-700 hover:underline">
+        <Link href="/stories" className="text-primary hover:underline">
           סיפורי השמות
         </Link>{' '}
         מראים מה להיט אחד יכול לעשות לשם שלם.

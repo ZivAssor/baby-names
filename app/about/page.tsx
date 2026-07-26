@@ -76,7 +76,7 @@ export default function AboutPage() {
       />
       <h1 className="pb-4 text-3xl font-bold">על הנתונים והמתודולוגיה</h1>
 
-      <section className="mb-4 rounded-lg border bg-white p-6">
+      <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">מקור הנתונים</h2>
         <p className="mb-2">
           כל הנתונים באתר מבוססים על קובץ השמות הפרטיים הרשמי של{' '}
@@ -84,7 +84,7 @@ export default function AboutPage() {
             href="https://www.cbs.gov.il/he/Pages/search/TableMaps.aspx?CbsSubject=שמות"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-700 underline hover:text-blue-900"
+            className="text-primary underline hover:text-blue-900"
           >
             הלשכה המרכזית לסטטיסטיקה
           </a>
@@ -95,7 +95,7 @@ export default function AboutPage() {
           ייחודיים של כ-{formatNumber(totals.people)} תושבים, בחלוקה למגדר ולארבע קבוצות
           אוכלוסייה: {GROUPS.map((g) => GROUP_LABELS[g]).join(', ')}.
         </p>
-        <ul className="list-inside list-disc space-y-1 text-gray-700">
+        <ul className="list-inside list-disc space-y-1 text-foreground/90">
           {GROUPS.map((g) => {
             const s = groupStats(g);
             return (
@@ -108,13 +108,13 @@ export default function AboutPage() {
         </ul>
       </section>
 
-      <section className="mb-4 rounded-lg border bg-white p-6">
+      <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">איך אנחנו מטפלים בערכים מוסתרים</h2>
         <p className="mb-2">
           כשפחות מ-5 נולדים קיבלו שם בשנה מסוימת, הלמ״ס מסתירה את הערך (מסומן ״..״ בקובץ
           המקורי). באתר:
         </p>
-        <ul className="list-inside list-disc space-y-1 text-gray-700">
+        <ul className="list-inside list-disc space-y-1 text-foreground/90">
           <li>שנים מוסתרות מוצגות בגרפים כקטעים חסרים — לא כאפס.</li>
           <li>
             בסכומים על פני טווח שנים, שנה מוסתרת נספרת כ-1 לפחות, והסכום מסומן ב-+ כערך
@@ -127,19 +127,19 @@ export default function AboutPage() {
         </ul>
       </section>
 
-      <section className="rounded-lg border bg-white p-6">
+      <section className="rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">שאלות נפוצות</h2>
         <dl className="space-y-4">
           {FAQ.map(({ q, a }) => (
             <div key={q}>
               <dt className="font-semibold">{q}</dt>
-              <dd className="text-gray-700">{a}</dd>
+              <dd className="text-foreground/90">{a}</dd>
             </div>
           ))}
         </dl>
-        <p className="mt-6 text-sm text-gray-500">
+        <p className="mt-6 text-sm text-muted-foreground">
           יש שאלה שלא עניתי עליה?{' '}
-          <Link href="/" className="text-blue-700 hover:underline">
+          <Link href="/" className="text-primary hover:underline">
             חזרה לדשבורד הראשי
           </Link>
         </p>

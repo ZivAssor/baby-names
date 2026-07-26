@@ -36,7 +36,7 @@ export default function TrendCard({ group, initial }: TrendCardProps) {
   ].filter(Boolean) as { label: string; color: string; values: (number | null)[] }[];
 
   return (
-    <section className="relative flex h-[50vh] w-full flex-col rounded-lg border bg-white p-4 md:col-span-2 lg:h-[70vh]">
+    <section className="relative flex h-[50vh] w-full flex-col rounded-xl border border-border bg-card shadow-sm p-4 md:col-span-2 lg:h-[70vh]">
       <h2 className="mb-4 text-center text-2xl font-bold">שמות לאורך השנים</h2>
       <div className="mb-2 flex items-center justify-between gap-2">
         <div className="grow">
@@ -45,13 +45,13 @@ export default function TrendCard({ group, initial }: TrendCardProps) {
         <button
           type="button"
           onClick={() => setPercent((v) => !v)}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+          className="rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
           aria-label={percent ? 'הצגת מספרים מוחלטים' : 'הצגת אחוזים'}
         >
           {percent ? '%' : '#'}
         </button>
       </div>
-      {error && <p className="text-center text-sm text-red-600">שגיאה בטעינת הנתונים, נסו שוב</p>}
+      {error && <p className="text-center text-sm text-destructive">שגיאה בטעינת הנתונים, נסו שוב</p>}
       <div className={`min-h-0 grow ${loading ? 'opacity-50' : ''}`}>
         <TrendLine
           datasets={datasets}
@@ -63,9 +63,9 @@ export default function TrendCard({ group, initial }: TrendCardProps) {
           }
         />
       </div>
-      <p className="mt-2 text-xs text-gray-500">
+      <p className="mt-2 text-xs text-muted-foreground">
         קטעים חסרים בגרף הם שנים שבהן פחות מ-5 נולדים קיבלו את השם (הלמ״ס מסתירה ערכים אלו).{' '}
-        <Link href={namePath(detail.name)} className="text-blue-700 hover:underline">
+        <Link href={namePath(detail.name)} className="text-primary hover:underline">
           לעמוד המלא של השם {detail.name} ←
         </Link>
       </p>

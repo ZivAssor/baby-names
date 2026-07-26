@@ -14,7 +14,7 @@ export default function StoriesIndexPage() {
   return (
     <div className="py-4">
       <h1 className="pb-1 text-3xl font-bold">סיפורי שמות</h1>
-      <p className="pb-4 text-gray-600">
+      <p className="pb-4 text-muted-foreground">
         להיט רדיו, סרט של דיסני או רגע לאומי — לפעמים אפשר לראות את התרבות הישראלית בתוך נתוני
         השמות. כל סיפור כאן מגובה בנתונים אמיתיים של הלמ״ס.
       </p>
@@ -23,11 +23,11 @@ export default function StoriesIndexPage() {
           <Link
             key={story.slug}
             href={`/stories/${encodeURIComponent(story.slug)}`}
-            className="block rounded-lg border bg-white p-6 transition-shadow hover:shadow-md"
+            className="block rounded-xl border border-border bg-card shadow-sm p-6 transition-shadow hover:shadow-md"
           >
-            <p className="mb-1 text-sm font-semibold text-blue-700">{story.eventYear}</p>
+            <p className="mb-1 text-sm font-semibold text-primary">{story.eventYear}</p>
             <h2 className="mb-2 text-xl font-bold">{story.title}</h2>
-            <p className="text-gray-600">{story.hook}</p>
+            <p className="text-muted-foreground">{story.hook}</p>
           </Link>
         ))}
       </div>

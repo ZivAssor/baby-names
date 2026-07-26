@@ -101,21 +101,21 @@ export default function NameSearch({ mask, onSelect, placeholder, label }: NameS
         onKeyDown={onKeyDown}
         placeholder={placeholder ?? 'הקלידו שם...'}
         aria-label={label}
-        className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        className="w-full rounded-lg border border-input px-3 py-2 focus:border-ring focus:outline-none"
       />
       {expanded && (
         <ul
           id={listboxId}
           role="listbox"
           aria-label={label}
-          className="absolute z-10 mt-1 max-h-64 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-lg"
+          className="absolute z-10 mt-1 max-h-64 w-full overflow-auto rounded-lg border border-border bg-card shadow-lg"
         >
-          {error && <li className="px-3 py-2 text-sm text-red-600">שגיאה בטעינת רשימת השמות</li>}
+          {error && <li className="px-3 py-2 text-sm text-destructive">שגיאה בטעינת רשימת השמות</li>}
           {!error && index === null && (
-            <li className="px-3 py-2 text-sm text-gray-500">טוען שמות...</li>
+            <li className="px-3 py-2 text-sm text-muted-foreground">טוען שמות...</li>
           )}
           {!error && index !== null && results.length === 0 && (
-            <li className="px-3 py-2 text-sm text-gray-500">לא נמצאו שמות</li>
+            <li className="px-3 py-2 text-sm text-muted-foreground">לא נמצאו שמות</li>
           )}
           {results.map(([name], i) => (
             <li
@@ -127,8 +127,8 @@ export default function NameSearch({ mask, onSelect, placeholder, label }: NameS
               <button
                 type="button"
                 tabIndex={-1}
-                className={`w-full px-3 py-2 text-right hover:bg-blue-50 ${
-                  i === activeIdx ? 'bg-blue-50' : ''
+                className={`w-full px-3 py-2 text-right hover:bg-accent ${
+                  i === activeIdx ? 'bg-accent' : ''
                 }`}
                 onMouseEnter={() => setActiveIdx(i)}
                 onClick={() => choose(name)}
