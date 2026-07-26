@@ -7,9 +7,15 @@ export default function Header() {
       <Link href="/" className="text-2xl font-bold hover:text-blue-700">
         {SITE_NAME} <span aria-hidden>🇮🇱</span>
       </Link>
-      <nav aria-label="ניווט ראשי" className="flex gap-4 text-gray-700">
+      <nav aria-label="ניווט ראשי" className="flex flex-wrap justify-center gap-4 text-gray-700">
         <Link href="/names" className="hover:text-blue-700 hover:underline">
           כל השמות
+        </Link>
+        <Link href="/trending" className="hover:text-blue-700 hover:underline">
+          מגמות
+        </Link>
+        <Link href="/stories" className="hover:text-blue-700 hover:underline">
+          סיפורי שמות
         </Link>
         <Link href="/about" className="hover:text-blue-700 hover:underline">
           על הנתונים

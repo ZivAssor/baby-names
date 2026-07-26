@@ -27,7 +27,7 @@ const SOCIALS = [
 export default function Footer() {
   return (
     <footer className="mt-8 border-t border-gray-200 bg-white">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-8 md:grid-cols-3">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-8 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <p className="mb-3 text-lg font-bold">{SITE_NAME}</p>
           <p className="text-sm text-gray-600">
@@ -47,12 +47,52 @@ export default function Footer() {
             ))}
           </ul>
         </nav>
+        <nav aria-label="מצאו שם">
+          <p className="mb-3 font-semibold">מצאו שם</p>
+          <ul className="space-y-1.5 text-sm text-gray-600">
+            <li>
+              <Link href="/boys" className="hover:text-blue-700 hover:underline">
+                שמות לבנים
+              </Link>
+            </li>
+            <li>
+              <Link href="/girls" className="hover:text-blue-700 hover:underline">
+                שמות לבנות
+              </Link>
+            </li>
+            <li>
+              <Link href="/unisex" className="hover:text-blue-700 hover:underline">
+                שמות יוניסקס
+              </Link>
+            </li>
+            <li>
+              <Link href="/rare" className="hover:text-blue-700 hover:underline">
+                שמות נדירים
+              </Link>
+            </li>
+            <li>
+              <Link href="/years" className="hover:text-blue-700 hover:underline">
+                השמות הפופולריים לפי שנה
+              </Link>
+            </li>
+          </ul>
+        </nav>
         <nav aria-label="ניווט">
           <p className="mb-3 font-semibold">ניווט</p>
           <ul className="space-y-1.5 text-sm text-gray-600">
             <li>
               <Link href="/names" className="hover:text-blue-700 hover:underline">
                 כל השמות לפי א״ב
+              </Link>
+            </li>
+            <li>
+              <Link href="/trending" className="hover:text-blue-700 hover:underline">
+                מגמות — מזנקים ודועכים
+              </Link>
+            </li>
+            <li>
+              <Link href="/stories" className="hover:text-blue-700 hover:underline">
+                סיפורי שמות
               </Link>
             </li>
             <li>

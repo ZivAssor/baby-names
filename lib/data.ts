@@ -371,3 +371,203 @@ export function relatedNames(name: string, limit = 8): DirectoryEntry[] {
     )
     .slice(0, limit);
 }
+
+// ---------------------------------------------------------------------------
+// Year pages, trending, and landing-page queries
+// ---------------------------------------------------------------------------
+
+export interface YearMover {
+  name: string;
+  /** visible count; when the matching *Suppressed flag is true the real value is 1–4 */
+  current: number;
+  previous: number;
+  currentSuppressed: boolean;
+  previousSuppressed: boolean;
+  delta: number;
+}
+
+/** Biggest absolute year-over-year movers. Suppressed endpoints (hidden 1–4)
+ *  are never treated as 0: the delta uses the lower bound of 1 and the flags
+ *  let the UI render "1–4" instead of a false exact number. */
+export function yearMovers(
+  year: number,
+  group: Group,
+  gender: Gender,
+  limit = 5,
+): { risers: YearMover[]; fallers: YearMover[] } {
+  if (year <= FIRST_YEAR) return { risers: [], fallers: [] };
+  const i = yearIndex(year);
+  const movers: YearMover[] = [];
+  for (const { n, c } of seriesFiles[`${group}-${gender}`].names) {
+    const currentSuppressed = c[i] === SUPPRESSED;
+    const previousSuppressed = c[i - 1] === SUPPRESSED;
+    const current = currentSuppressed ? 1 : Math.max(0, c[i]);
+    const previous = previousSuppressed ? 1 : Math.max(0, c[i - 1]);
+    if (current < 30 && previous < 30) continue;
+    movers.push({
+      name: n,
+      current,
+      previous,
+      currentSuppressed,
+      previousSuppressed,
+      delta: current - previous,
+    });
+  }
+  movers.sort((a, b) => b.delta - a.delta);
+  return {
+    risers: movers.slice(0, limit).filter((m) => m.delta > 0),
+    fallers: movers.slice(-limit).reverse().filter((m) => m.delta < 0),
+  };
+}
+
+/** Visible births per group for a given year. */
+export function yearBirths(year: number): { group: Group; m: number; f: number }[] {
+  const i = yearIndex(year);
+  return GROUPS.map((group) => ({
+    group,
+    m: aggregatesFile.aggregates[`${group}-m`].yearlyVisibleSum[i],
+    f: aggregatesFile.aggregates[`${group}-f`].yearlyVisibleSum[i],
+  }));
+}
+
+export interface TrendingName {
+  name: string;
+  /** average count in the recent window (lower bound when currentSuppressed > 0) */
+  current: number;
+  /** average count in the earlier window (lower bound when pastSuppressed > 0) */
+  past: number;
+  /** suppressed years inside each window — when > 0 the average is a lower bound */
+  currentSuppressed: number;
+  pastSuppressed: number;
+  /** current / past (computed on the lower-bound averages) */
+  ratio: number;
+}
+
+export const TREND_CURRENT: [number, number] = [LAST_YEAR - 2, LAST_YEAR]; // 2022–2024
+export const TREND_PAST: [number, number] = [LAST_YEAR - 7, LAST_YEAR - 5]; // 2017–2019
+
+/** Window average using the suppression lower bound (each hidden year ≥ 1). */
+function windowAvg(
+  c: number[],
+  [from, to]: [number, number],
+): { avg: number; suppressedYears: number } {
+  let sum = 0;
+  let suppressedYears = 0;
+  for (let y = from; y <= to; y++) {
+    const v = c[yearIndex(y)];
+    if (v === SUPPRESSED) {
+      sum += 1;
+      suppressedYears++;
+    } else {
+      sum += Math.max(0, v);
+    }
+  }
+  return { avg: sum / (to - from + 1), suppressedYears };
+}
+
+// Minimum window-average for inclusion, scaled to each population's size so
+// smaller groups can still surface risers/fallers.
+const TREND_MIN_VOLUME: Record<Group, number> = { jewish: 60, muslim: 30, christian: 8, druze: 8 };
+
+/** Names rising/falling fastest between two 3-year windows (5 years apart). */
+export function trendingNames(
+  group: Group,
+  gender: Gender,
+  limit = 10,
+): { risers: TrendingName[]; fallers: TrendingName[]; windows: { current: [number, number]; past: [number, number] } } {
+  const minVolume = TREND_MIN_VOLUME[group];
+  const entries: TrendingName[] = [];
+  for (const { n, c } of seriesFiles[`${group}-${gender}`].names) {
+    const current = windowAvg(c, TREND_CURRENT);
+    const past = windowAvg(c, TREND_PAST);
+    if (current.avg < 5 && past.avg < 5) continue;
+    // +1 smoothing keeps brand-new names finite and comparable
+    entries.push({
+      name: n,
+      current: Math.round(current.avg),
+      past: Math.round(past.avg),
+      currentSuppressed: current.suppressedYears,
+      pastSuppressed: past.suppressedYears,
+      ratio: (current.avg + 1) / (past.avg + 1),
+    });
+  }
+  const risers = entries
+    .filter((e) => e.current >= minVolume && e.ratio > 1)
+    .sort((a, b) => b.ratio - a.ratio)
+    .slice(0, limit);
+  const fallers = entries
+    .filter((e) => e.past >= minVolume && e.ratio < 1)
+    .sort((a, b) => a.ratio - b.ratio)
+    .slice(0, limit);
+  return { risers, fallers, windows: { current: TREND_CURRENT, past: TREND_PAST } };
+}
+
+/** Unisex names: both genders present with a meaningful minority share. */
+export function unisexNames(limit = 50): { name: string; totalM: number; totalF: number; totalAll: number }[] {
+  const out: { name: string; totalM: number; totalF: number; totalAll: number }[] = [];
+  for (const entry of directory) {
+    let totalM = 0;
+    let totalF = 0;
+    for (const s of entry.series) {
+      if (s.gender === 'm') totalM += s.total;
+      else totalF += s.total;
+    }
+    if (totalM === 0 || totalF === 0) continue;
+    const minority = Math.min(totalM, totalF) / (totalM + totalF);
+    if (minority >= 0.25 && entry.totalAll >= 100) {
+      out.push({ name: entry.name, totalM, totalF, totalAll: entry.totalAll });
+    }
+  }
+  return out.sort((a, b) => b.totalAll - a.totalAll).slice(0, limit);
+}
+
+function nameHash(name: string): number {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+  return h >>> 0;
+}
+
+/** Rare names still in living use: smallest all-time totals with evidence in the last 15 years.
+ *  Hundreds of names tie at the CBS floor (total = 5), so ties break by most recent
+ *  use and then a stable hash — not alphabetically, which would fill the whole list
+ *  with names starting at א. */
+export function rareNames(limit = 60): { name: string; totalAll: number; gender: Gender | 'both' }[] {
+  const cutoff = yearIndex(LAST_YEAR - 14);
+  const out: { name: string; totalAll: number; gender: Gender | 'both'; lastUse: number; hash: number }[] = [];
+  for (const entry of directory) {
+    if (entry.totalAll > 30) continue;
+    let lastUse = -1;
+    const genders = new Set<Gender>();
+    for (const s of entry.series) {
+      genders.add(s.gender);
+      const raw = seriesLookup(`${s.group}-${s.gender}`).get(entry.name);
+      if (!raw) continue;
+      for (let i = cutoff; i < raw.c.length; i++) {
+        if (raw.c[i] !== 0 && i > lastUse) lastUse = i;
+      }
+    }
+    if (lastUse < 0) continue;
+    out.push({
+      name: entry.name,
+      totalAll: entry.totalAll,
+      gender: genders.size === 2 ? 'both' : [...genders][0],
+      lastUse,
+      hash: nameHash(entry.name),
+    });
+  }
+  return out
+    .sort((a, b) => a.totalAll - b.totalAll || b.lastUse - a.lastUse || a.hash - b.hash)
+    .slice(0, limit)
+    .map(({ name, totalAll, gender }) => ({ name, totalAll, gender }));
+}
+
+/** All-time most common names for a gender (CBS totals, summed across groups). */
+export function allTimeTop(gender: Gender, limit = 20): { name: string; total: number }[] {
+  const out: { name: string; total: number }[] = [];
+  for (const entry of directory) {
+    let total = 0;
+    for (const s of entry.series) if (s.gender === gender) total += s.total;
+    if (total > 0) out.push({ name: entry.name, total });
+  }
+  return out.sort((a, b) => b.total - a.total).slice(0, limit);
+}

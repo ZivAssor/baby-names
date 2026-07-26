@@ -1,0 +1,129 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import StoryChart from '@/components/story/StoryChart';
+import { namePath, SITE_NAME, SITE_URL } from '@/lib/constants';
+import { getNameDetail } from '@/lib/data';
+import { pageMetadata } from '@/lib/seo';
+import { getStory, STORIES } from '@/lib/stories';
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return STORIES.map(({ slug }) => ({ slug }));
+}
+
+async function storyFromParams(params: Promise<{ slug: string }>) {
+  const { slug } = await params;
+  try {
+    return getStory(decodeURIComponent(slug));
+  } catch {
+    return undefined;
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const story = await storyFromParams(params);
+  if (!story) return { title: 'סיפור לא נמצא' };
+  return pageMetadata({
+    title: story.title,
+    description: story.hook,
+    canonical: `/stories/${encodeURIComponent(story.slug)}`,
+  });
+}
+
+export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const story = await storyFromParams(params);
+  if (!story) notFound();
+
+  const detail = getNameDetail(story.name);
+  const series = detail?.series.find((s) => s.group === story.group && s.gender === story.gender);
+  if (!detail || !series) notFound();
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: story.title,
+    description: story.hook,
+    inLanguage: 'he',
+    author: { '@type': 'Organization', name: SITE_NAME },
+    mainEntityOfPage: `${SITE_URL}/stories/${encodeURIComponent(story.slug)}`,
+  };
+
+  return (
+    <article className="py-4">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <nav aria-label="פירורי לחם" className="pb-2 text-sm text-gray-500">
+        <Link href="/" className="hover:underline">
+          ראשי
+        </Link>{' '}
+        ›{' '}
+        <Link href="/stories" className="hover:underline">
+          סיפורי שמות
+        </Link>{' '}
+        › <span className="text-gray-700">{story.name}</span>
+      </nav>
+
+      <h1 className="pb-2 text-3xl font-bold">{story.title}</h1>
+      <p className="pb-4 text-lg text-gray-600">{story.hook}</p>
+
+      <section className="mb-4 rounded-lg border bg-white p-6">
+        <StoryChart
+          name={story.name}
+          gender={story.gender}
+          counts={series.counts}
+          eventYear={story.eventYear}
+          eventLabel={story.eventLabel}
+        />
+      </section>
+
+      <section className="mb-4 rounded-lg border bg-white p-6">
+        {story.paragraphs.map((p) => (
+          <p key={p.slice(0, 30)} className="mb-3 leading-relaxed text-gray-800">
+            {p}
+          </p>
+        ))}
+        <p className="mt-4 text-sm text-gray-500">
+          חשוב לומר: נתוני שמות מראים מתאם בין אירועים תרבותיים לבחירות של הורים — לא הוכחה
+          לסיבתיות. הנתונים עצמם רשמיים ומדויקים (למ״ס), הפרשנות היא שלנו.
+        </p>
+      </section>
+
+      <div className="flex flex-wrap gap-3">
+        <Link
+          href={namePath(story.name)}
+          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+        >
+          לעמוד המלא של השם {story.name} ←
+        </Link>
+        <Link
+          href="/stories"
+          className="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200"
+        >
+          לכל סיפורי השמות
+        </Link>
+      </div>
+
+      <section className="mt-6 text-sm text-gray-500">
+        <h2 className="mb-1 font-semibold text-gray-600">מקורות</h2>
+        <ul className="list-inside list-disc">
+          <li>הלשכה המרכזית לסטטיסטיקה — קובץ השמות הפרטיים 1949–2024</li>
+          {story.sources.map(({ label, url }) => (
+            <li key={url}>
+              <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </article>
+  );
+}

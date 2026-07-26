@@ -13,6 +13,8 @@ export interface TrendDataset {
   color: string;
   /** one value per year from FIRST_YEAR; null = suppressed (rendered as a gap) */
   values: (number | null)[];
+  /** override point radius (e.g. a single highlighted event point) */
+  pointRadius?: number;
 }
 
 interface TrendLineProps {
@@ -26,12 +28,13 @@ export default function TrendLine({ datasets, percent, title }: TrendLineProps) 
     <Line
       data={{
         labels: YEARS,
-        datasets: datasets.map(({ label, color, values }) => ({
+        datasets: datasets.map(({ label, color, values, pointRadius }) => ({
           label,
           data: values,
           borderColor: color,
           backgroundColor: color,
           spanGaps: false,
+          ...(pointRadius !== undefined ? { pointRadius, pointHoverRadius: pointRadius + 2 } : {}),
         })),
       }}
       options={{
