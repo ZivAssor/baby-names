@@ -7,6 +7,7 @@ import { pageMetadata } from '@/lib/seo';
 const SUBPAGE_GROUPS = GROUPS.filter((g) => g !== 'jewish');
 
 export const dynamicParams = false;
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return SUBPAGE_GROUPS.map((group) => ({ group }));

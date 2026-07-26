@@ -297,21 +297,35 @@ export function siteTotals(): { names: number; people: number } {
   return { names: meta.uniqueNames, people };
 }
 
-/** Default showcase name for a group: the unisex name with the biggest combined total, falling back to the group's most common name. */
-export function defaultNameFor(group: Group): string {
-  let bestUnisex: { name: string; total: number } | null = null;
-  let bestAny: { name: string; total: number } | null = null;
-  for (const entry of directory) {
-    const inGroup = entry.series.filter((s) => s.group === group);
-    if (inGroup.length === 0) continue;
-    const total = inGroup.reduce((acc, s) => acc + s.total, 0);
-    if (!bestAny || total > bestAny.total) bestAny = { name: entry.name, total };
-    const genders = new Set(inGroup.map((s) => s.gender));
-    if (genders.size === 2 && (!bestUnisex || total > bestUnisex.total)) {
-      bestUnisex = { name: entry.name, total };
+// Pool of showcase candidates per group: the 150 most common names (rich
+// series, interesting charts). Built once per server instance.
+const showcasePools = new Map<Group, string[]>();
+function showcasePool(group: Group): string[] {
+  let pool = showcasePools.get(group);
+  if (!pool) {
+    const totals = new Map<string, number>();
+    for (const entry of directory) {
+      const total = entry.series
+        .filter((s) => s.group === group)
+        .reduce((acc, s) => acc + s.total, 0);
+      if (total > 0) totals.set(entry.name, total);
     }
+    pool = [...totals.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 150)
+      .map(([name]) => name);
+    showcasePools.set(group, pool);
   }
-  return (bestUnisex ?? bestAny)?.name ?? 'נועם';
+  return pool;
+}
+
+/** Daily rotating showcase name: deterministic per calendar day (same for all
+ *  visitors, so ISR pages stay cacheable), different every day. */
+export function defaultNameFor(group: Group): string {
+  const pool = showcasePool(group);
+  if (pool.length === 0) return 'נועם';
+  const day = Math.floor(Date.now() / 86_400_000);
+  return pool[day % pool.length];
 }
 
 export function allNames(): DirectoryEntry[] {
