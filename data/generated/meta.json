@@ -1,0 +1,43 @@
+{
+ "source": "data/source/cbs-names-1949-2024.xlsx",
+ "sourceDescription": "הלשכה המרכזית לסטטיסטיקה — השמות הנוכחיים של ילידי 1949-2024 לפי מין וקבוצת אוכלוסייה, שם פרטי ושנת לידה",
+ "firstYear": 1949,
+ "lastYear": 2024,
+ "suppressedSentinel": -1,
+ "suppressionNote": "ערכים שנתיים בין 1 ל-4 מוסתרים על ידי הלמ\"ס מטעמי צנעת הפרט ומסומנים כ--1; עמודת הסך הכל כוללת גם אותם",
+ "sheets": {
+  "jewish-f": {
+   "nameCount": 8126,
+   "suppressedCells": 117109
+  },
+  "jewish-m": {
+   "nameCount": 6722,
+   "suppressedCells": 94114
+  },
+  "muslim-f": {
+   "nameCount": 5438,
+   "suppressedCells": 76866
+  },
+  "muslim-m": {
+   "nameCount": 3097,
+   "suppressedCells": 45205
+  },
+  "christian-f": {
+   "nameCount": 1604,
+   "suppressedCells": 23017
+  },
+  "christian-m": {
+   "nameCount": 1032,
+   "suppressedCells": 18333
+  },
+  "druze-f": {
+   "nameCount": 1547,
+   "suppressedCells": 20250
+  },
+  "druze-m": {
+   "nameCount": 1057,
+   "suppressedCells": 18300
+  }
+ },
+ "uniqueNames": 19882
+}

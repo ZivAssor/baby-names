@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: var(--font-heebo), system-ui, sans-serif;
+}
+
+body {
+  @apply bg-gray-100 text-gray-900 antialiased;
+}
