@@ -46,12 +46,14 @@ export default function AboutPage() {
     url: `${SITE_URL}/about`,
     inLanguage: 'he',
     creator: {
-      '@type': 'GovernmentOrganization',
+      '@type': 'Organization',
       name: 'הלשכה המרכזית לסטטיסטיקה',
       url: 'https://www.cbs.gov.il',
     },
     temporalCoverage: `${FIRST_YEAR}/${LAST_YEAR}`,
-    spatialCoverage: { '@type': 'Country', name: 'ישראל' },
+    spatialCoverage: 'ישראל',
+    license: 'https://www.cbs.gov.il/he/Pages/רישיון-שימוש.aspx',
+    isAccessibleForFree: true,
   };
 
   const faqJsonLd = {
