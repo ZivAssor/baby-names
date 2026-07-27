@@ -14,13 +14,13 @@ import { formatNumber } from '@/lib/format';
 import { pageMetadata } from '@/lib/seo';
 import { nameFacts, nameMetaDescription } from '@/lib/text';
 
-export const dynamicParams = true;
+// Prerender ALL names at build time: pages become static CDN files with zero
+// ISR writes (on-demand rendering of the ~18k long tail burned through
+// Vercel's free ISR-write quota within a day of Googlebot crawling the sitemap).
+export const dynamicParams = false;
 
-// Prerender the 2,000 most common names; the long tail renders on demand and is cached.
 export function generateStaticParams() {
-  return getSearchIndex()
-    .slice(0, 2000)
-    .map(([name]) => ({ name }));
+  return getSearchIndex().map(([name]) => ({ name }));
 }
 
 async function detailFromParams(params: Promise<{ name: string }>) {
