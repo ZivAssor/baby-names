@@ -14,13 +14,18 @@ import { formatNumber } from '@/lib/format';
 import { pageMetadata } from '@/lib/seo';
 import { nameFacts, nameMetaDescription } from '@/lib/text';
 
-// Prerender ALL names at build time: pages become static CDN files with zero
-// ISR writes (on-demand rendering of the ~18k long tail burned through
-// Vercel's free ISR-write quota within a day of Googlebot crawling the sitemap).
-export const dynamicParams = false;
+// Prerender the 6,000 most common names (nearly all human traffic); the rare
+// long tail renders on first visit and stays cached until the next deploy.
+// Full prerendering of all ~20k names crashes Vercel's deployment pipeline
+// ("Maximum call stack size exceeded" post-build), and on-demand-heavy setups
+// burn the free ISR-write quota when crawlers walk the sitemap after every
+// deploy - so: big static head, small dynamic tail, and deploy sparingly.
+export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getSearchIndex().map(([name]) => ({ name }));
+  return getSearchIndex()
+    .slice(0, 6000)
+    .map(([name]) => ({ name }));
 }
 
 async function detailFromParams(params: Promise<{ name: string }>) {
