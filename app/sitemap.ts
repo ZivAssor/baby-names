@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { FIRST_YEAR, GROUPS, groupPath, LAST_YEAR, letterPath, namePath, SITE_URL } from '@/lib/constants';
-import { allNames, letterIndex } from '@/lib/data';
+import { getSearchIndex, letterIndex } from '@/lib/data';
 import { STORIES } from '@/lib/stories';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -37,11 +37,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  const names: MetadataRoute.Sitemap = allNames().map(({ name }) => ({
-    url: `${SITE_URL}${namePath(name)}`,
-    changeFrequency: 'monthly',
-    priority: 0.4,
-  }));
+  // Temporarily limited to the prerendered head (matches generateStaticParams
+  // in app/name/[name]/page.tsx): pointing crawlers at the on-demand tail
+  // burns Vercel's free ISR-write quota. Restore to the full list once the
+  // usage cycle resets or the project moves to a paid plan.
+  const names: MetadataRoute.Sitemap = getSearchIndex()
+    .slice(0, 6000)
+    .map(([name]) => ({
+      url: `${SITE_URL}${namePath(name)}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.4,
+    }));
 
   return [...core, ...names];
 }
