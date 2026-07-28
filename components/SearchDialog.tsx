@@ -56,6 +56,7 @@ export default function SearchDialog({ open, onOpenChange }: SearchDialogProps) 
       onOpenChange={onOpenChange}
       title="חיפוש שם"
       description="הקלידו שם כדי לעבור לעמוד הסטטיסטיקות שלו"
+      keepMounted
     >
       <Command shouldFilter={false} dir="rtl">
         <CommandInput placeholder="הקלידו שם..." value={query} onValueChange={setQuery} />

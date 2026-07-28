@@ -5,7 +5,7 @@
 // ships in the initial HTML: crawlers and AI assistants can read the chart,
 // and rendering is identical in every browser. A thin pointer layer adds a
 // crosshair + tooltip after hydration.
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { FIRST_YEAR, LAST_YEAR } from '@/lib/constants';
 
 const YEAR_COUNT = LAST_YEAR - FIRST_YEAR + 1;
@@ -48,6 +48,7 @@ function formatValue(value: number, percent: boolean): string {
 
 export default function TrendLine({ datasets, percent, title }: TrendLineProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
   const [size, setSize] = useState({ w: 800, h: 380 });
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
 
@@ -56,6 +57,7 @@ export default function TrendLine({ datasets, percent, title }: TrendLineProps) 
     if (!el) return;
     const observer = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
+      rectRef.current = null;
       if (width > 40 && height > 40) setSize({ w: width, h: height });
     });
     observer.observe(el);
@@ -65,11 +67,35 @@ export default function TrendLine({ datasets, percent, title }: TrendLineProps) 
   const plotW = size.w - MARGIN.left - MARGIN.right;
   const plotH = size.h - MARGIN.top - MARGIN.bottom;
 
-  const maxValue = Math.max(
-    1e-9,
-    ...datasets.flatMap((d) => d.values.filter((v): v is number => v !== null && v !== undefined)),
-  );
-  const yMax = niceCeil(maxValue * 1.05);
+  // Memoized so hover re-renders (per pointer frame) don't rebuild every path string
+  const { yMax, paths } = useMemo(() => {
+    const maxValue = Math.max(
+      1e-9,
+      ...datasets.flatMap((d) => d.values.filter((v): v is number => v !== null && v !== undefined)),
+    );
+    const max = niceCeil(maxValue * 1.05);
+    const xAt = (yearIdx: number) => MARGIN.left + (yearIdx / (YEAR_COUNT - 1)) * plotW;
+    const yAt = (value: number) => MARGIN.top + plotH - (value / max) * plotH;
+
+    // Build path segments per dataset, broken at suppressed (null) years
+    const built = datasets.map((d) => {
+      const segments: string[] = [];
+      let current: string[] = [];
+      d.values.forEach((v, i) => {
+        if (v === null || v === undefined) {
+          if (current.length > 1) segments.push(current.join(' '));
+          current = [];
+        } else {
+          current.push(
+            `${current.length === 0 ? 'M' : 'L'}${xAt(i).toFixed(1)},${yAt(v).toFixed(1)}`,
+          );
+        }
+      });
+      if (current.length > 1) segments.push(current.join(' '));
+      return segments.join(' ');
+    });
+    return { yMax: max, paths: built };
+  }, [datasets, plotW, plotH]);
 
   const x = (yearIdx: number) => MARGIN.left + (yearIdx / (YEAR_COUNT - 1)) * plotW;
   const y = (value: number) => MARGIN.top + plotH - (value / yMax) * plotH;
@@ -78,24 +104,13 @@ export default function TrendLine({ datasets, percent, title }: TrendLineProps) 
   const xTickYears: number[] = [];
   for (let year = 1950; year <= LAST_YEAR; year += 10) xTickYears.push(year);
 
-  // Build path segments per dataset, broken at suppressed (null) years
-  const paths = datasets.map((d) => {
-    const segments: string[] = [];
-    let current: string[] = [];
-    d.values.forEach((v, i) => {
-      if (v === null || v === undefined) {
-        if (current.length > 1) segments.push(current.join(' '));
-        current = [];
-      } else {
-        current.push(`${current.length === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(v).toFixed(1)}`);
-      }
-    });
-    if (current.length > 1) segments.push(current.join(' '));
-    return segments.join(' ');
-  });
-
   function onPointerMove(e: React.PointerEvent<SVGSVGElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
+    // Rect is cached per gesture (refreshed on pointerenter, cleared on resize):
+    // getBoundingClientRect on every move forces a reflow right after the
+    // previous hover commit dirtied layout. Vertical scroll only shifts
+    // rect.top, which is unused - only left/width matter here.
+    const rect =
+      rectRef.current ?? (rectRef.current = e.currentTarget.getBoundingClientRect());
     const px = ((e.clientX - rect.left) / rect.width) * size.w;
     const idx = Math.round(((px - MARGIN.left) / plotW) * (YEAR_COUNT - 1));
     setHoverIdx(idx >= 0 && idx < YEAR_COUNT ? idx : null);
@@ -129,6 +144,9 @@ export default function TrendLine({ datasets, percent, title }: TrendLineProps) 
         height="100%"
         role="img"
         aria-label={title ?? 'גרף מגמה לאורך השנים'}
+        onPointerEnter={(e) => {
+          rectRef.current = e.currentTarget.getBoundingClientRect();
+        }}
         onPointerMove={onPointerMove}
         onPointerLeave={() => setHoverIdx(null)}
       >

@@ -1,10 +1,24 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { SearchIcon } from 'lucide-react';
+import { loadIndex } from '@/lib/client-index';
 
-const SearchDialog = dynamic(() => import('@/components/SearchDialog'));
+const loadSearchDialog = () => import('@/components/SearchDialog');
+// React.lazy + our own Suspense (not next/dynamic with `loading`): dynamic's
+// fallback is prop-blind - it would cover the page whenever the chunk is
+// pending, even after the dialog was closed, with no way to dismiss it.
+const SearchDialog = lazy(loadSearchDialog);
+
+/** Warm the dialog chunk + name index during the gesture, before the click handler runs. */
+function warmSearch() {
+  loadSearchDialog().catch(() => {
+    // ignore - a failed warm just falls back to loading on open
+  });
+  loadIndex().catch(() => {
+    // ignore here - SearchDialog's own load path surfaces the error and retries
+  });
+}
 
 /** Site-wide name search trigger. The heavy dialog (cmdk + Base UI) loads on first open. */
 export default function GlobalSearch() {
@@ -23,6 +37,7 @@ export default function GlobalSearch() {
       // e.code is layout-independent - with a Hebrew layout the K key reports e.key === 'ל'
       if ((e.metaKey || e.ctrlKey) && (e.code === 'KeyK' || e.key.toLowerCase() === 'k')) {
         e.preventDefault();
+        warmSearch();
         setOpen((v) => !v);
         setEverOpened(true);
       }
@@ -31,10 +46,26 @@ export default function GlobalSearch() {
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
+  useEffect(() => {
+    // Warm the dialog chunk at browser idle so its download+eval never lands
+    // inside the tap that opens search (the index stays gesture-triggered -
+    // it is ~106KB gz and not every visitor searches).
+    const warm = () => {
+      loadSearchDialog().catch(() => {});
+    };
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(warm, { timeout: 4000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(warm, 2500);
+    return () => window.clearTimeout(id);
+  }, []);
+
   return (
     <>
       <button
         type="button"
+        onPointerDown={warmSearch}
         onClick={() => {
           setOpen(true);
           setEverOpened(true);
@@ -50,7 +81,22 @@ export default function GlobalSearch() {
           </kbd>
         )}
       </button>
-      {everOpened && <SearchDialog open={open} onOpenChange={setOpen} />}
+      {everOpened && (
+        <Suspense
+          fallback={
+            open ? (
+              // Instant dimmed backdrop while the chunk loads; tap dismisses
+              <div
+                aria-hidden
+                onClick={() => setOpen(false)}
+                className="fixed inset-0 isolate z-50 bg-black/10 supports-backdrop-filter:backdrop-blur-xs"
+              />
+            ) : null
+          }
+        >
+          <SearchDialog open={open} onOpenChange={setOpen} />
+        </Suspense>
+      )}
     </>
   );
 }

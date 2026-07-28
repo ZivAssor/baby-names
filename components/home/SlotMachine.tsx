@@ -61,16 +61,18 @@ export default function SlotMachine({ group }: SlotMachineProps) {
     if (pool.length === 0) return;
 
     setIsRunning(true);
-    for (let i = 0; i < slots.length; i++) {
-      timers.current[i] = setInterval(() => {
-        setSlots((prev) => {
-          const next = [...prev];
-          const pick = pool[Math.floor(Math.random() * pool.length)][0];
-          next[i] = { name: pick, key: Math.random() };
-          return next;
-        });
-      }, 100);
-    }
+    // One interval updating all slots per tick - three staggered intervals
+    // tripled the render rate and saturated slow mobile main threads
+    timers.current = [
+      setInterval(() => {
+        setSlots((prev) =>
+          prev.map(() => ({
+            name: pool[Math.floor(Math.random() * pool.length)][0],
+            key: Math.random(),
+          })),
+        );
+      }, 100),
+    ];
     stopTimer.current = setTimeout(() => {
       timers.current.forEach(clearInterval);
       timers.current = [];
@@ -103,6 +105,9 @@ export default function SlotMachine({ group }: SlotMachineProps) {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
+                  // Exit must finish within one 100ms spin tick, otherwise
+                  // AnimatePresence stacks ever more exiting nodes
+                  transition={{ duration: 0.09, ease: 'easeOut' }}
                   className="absolute flex h-full w-full items-center justify-center"
                 >
                   {isRunning ? (

@@ -39,12 +39,14 @@ function CommandDialog({
   children,
   className,
   showCloseButton = false,
+  keepMounted = false,
   ...props
 }: Omit<React.ComponentProps<typeof Dialog>, "children"> & {
   title?: string
   description?: string
   className?: string
   showCloseButton?: boolean
+  keepMounted?: boolean
   children: React.ReactNode
 }) {
   return (
@@ -55,6 +57,7 @@ function CommandDialog({
           className
         )}
         showCloseButton={showCloseButton}
+        keepMounted={keepMounted}
       >
         <DialogHeader className="sr-only">
           <DialogTitle>{title}</DialogTitle>

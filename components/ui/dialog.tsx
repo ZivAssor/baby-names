@@ -43,12 +43,15 @@ function DialogContent({
   className,
   children,
   showCloseButton = true,
+  keepMounted = false,
   ...props
 }: DialogPrimitive.Popup.Props & {
   showCloseButton?: boolean
+  /** Keep the portal subtree in the DOM while closed - re-opening then only toggles visibility instead of re-mounting everything inside the tap. */
+  keepMounted?: boolean
 }) {
   return (
-    <DialogPortal>
+    <DialogPortal keepMounted={keepMounted}>
       <DialogOverlay />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
