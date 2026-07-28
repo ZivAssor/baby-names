@@ -125,15 +125,18 @@ Two review rounds caught exactly this class of bug in freshly written code.
 1. Mine candidates: one-year spike scan (value vs prev-3yr average) over the
    series files. Already RESEARCHED AND UNEXPLAINED (do NOT publish without
    new evidence - no sourced trigger was found): בר 1989, שירן 1983,
-   נסרין 1976, שירין 1977, היבא 1980. Medium-confidence held back for a
-   possible future batch: דור 1985 (Hanan Yuval album), לובנה 1975
-   (Qays wa Lubna TV series).
+   נסרין 1976, שירין 1977, היבא 1980, וסאם 1975, אשרף 1974, סמאהר 1976,
+   יובל-בנות 1992. Medium-confidence held back for a possible future batch:
+   דור 1985 (Hanan Yuval album), לובנה 1975 (Qays wa Lubna TV series),
+   ג'ורי 2017 (Turkish drama dub - trigger plausible but two sources failed
+   verification).
 2. Verify the cultural trigger with web sources (we caught a wrong attribution
    this way - אגם רודברג was never on כוכב נולד).
 3. Verify EVERY number in the prose against `data/generated/series/*.json`
    (two review rounds each caught a wrong number in draft prose).
 4. Keep causal language careful (מתאם, not הוכחה) - the story page includes a
-   standing disclaimer. Published stories as of 2026-07: 13.
+   standing disclaimer. Published stories as of 2026-07: 28 (13 original +
+   15 in the July 2026 batch, incl. the first muslim-sector stories).
 
 ## Infrastructure
 
