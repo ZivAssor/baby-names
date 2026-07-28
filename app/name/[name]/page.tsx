@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import NameCharts from '@/components/name/NameCharts';
+import ShareButton from '@/components/ShareButton';
 import {
   GROUP_LABELS,
   letterPath,
@@ -98,9 +99,15 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
       </nav>
 
       <h1 className="pb-1 text-3xl font-bold">השם {detail.name}</h1>
-      <p className="pb-4 text-muted-foreground">
+      <p className="pb-3 text-muted-foreground">
         סטטיסטיקות ומגמות על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949-2024
       </p>
+      <div className="pb-4">
+        <ShareButton
+          shareText={`בישראל יש ${formatNumber(detail.totalAll)} אנשים עם השם ${detail.name} 😮 כמה יש עם השם שלכם?`}
+          path={namePath(detail.name)}
+        />
+      </div>
 
       <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <h2 className="mb-3 text-xl font-bold">כמה אנשים נושאים את השם {detail.name}?</h2>

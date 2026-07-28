@@ -71,6 +71,11 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/top-names" className="hover:text-primary hover:underline">
+                השמות הפופולריים עכשיו
+              </Link>
+            </li>
+            <li>
               <Link href="/years" className="hover:text-primary hover:underline">
                 השמות הפופולריים לפי שנה
               </Link>

@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     })),
     { url: `${SITE_URL}/names`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${SITE_URL}/top-names`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${SITE_URL}/boys`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${SITE_URL}/girls`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${SITE_URL}/unisex`, changeFrequency: 'monthly', priority: 0.7 },

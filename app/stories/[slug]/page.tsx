@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import ShareButton from '@/components/ShareButton';
 import StoryChart from '@/components/story/StoryChart';
 import { namePath, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { getNameDetail } from '@/lib/data';
@@ -72,7 +73,13 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       </nav>
 
       <h1 className="pb-2 text-3xl font-bold">{story.title}</h1>
-      <p className="pb-4 text-lg text-muted-foreground">{story.hook}</p>
+      <p className="pb-3 text-lg text-muted-foreground">{story.hook}</p>
+      <div className="pb-4">
+        <ShareButton
+          shareText={`${story.hook} הסיפור המלא:`}
+          path={`/stories/${encodeURIComponent(story.slug)}`}
+        />
+      </div>
 
       <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
         <StoryChart
