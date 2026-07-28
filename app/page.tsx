@@ -6,8 +6,12 @@ import { pageMetadata } from '@/lib/seo';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  ...pageMetadata({ title: SITE_NAME, description: SITE_DESCRIPTION, canonical: '/' }),
-  title: { absolute: SITE_NAME },
+  ...pageMetadata({
+    title: `כמה אנשים בישראל נושאים את השם שלכם? | ${SITE_NAME}`,
+    description: SITE_DESCRIPTION,
+    canonical: '/',
+  }),
+  title: { absolute: `כמה אנשים בישראל נושאים את השם שלכם? | ${SITE_NAME}` },
 };
 
 export default function HomePage() {

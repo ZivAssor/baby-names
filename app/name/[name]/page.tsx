@@ -47,7 +47,7 @@ export async function generateMetadata({
   const detail = await detailFromParams(params);
   if (!detail) return { title: 'שם לא נמצא' };
   return pageMetadata({
-    title: `השם ${detail.name} - סטטיסטיקות, פופולריות ומגמות`,
+    title: `כמה אנשים נושאים את השם ${detail.name}?`,
     description: nameMetaDescription(detail),
     canonical: namePath(detail.name),
   });
@@ -103,7 +103,7 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
       </p>
 
       <section className="mb-4 rounded-xl border border-border bg-card shadow-sm p-6">
-        <h2 className="mb-3 text-xl font-bold">עובדות על השם {detail.name}</h2>
+        <h2 className="mb-3 text-xl font-bold">כמה אנשים נושאים את השם {detail.name}?</h2>
         <ul className="list-inside list-disc space-y-1.5 text-foreground">
           {facts.map((fact) => (
             <li key={fact}>{fact}</li>

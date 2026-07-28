@@ -82,8 +82,7 @@ export function nameFacts(detail: NameDetail): string[] {
 
 export function nameMetaDescription(detail: NameDetail): string {
   const bits = [
-    `כמה תינוקות נולדו עם השם ${detail.name} בכל שנה?`,
-    `${formatNumber(detail.totalAll)} תושבי ישראל נושאים את השם`,
+    `${formatNumber(detail.totalAll)} תושבי ישראל נושאים את השם ${detail.name}`,
   ];
   if (detail.peakYear) bits.push(`שנת השיא: ${detail.peakYear}`);
   bits.push('גרפים ונתונים מלאים מ-1949 עד היום, על בסיס נתוני הלמ״ס.');

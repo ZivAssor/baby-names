@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import HeroSearch from '@/components/HeroSearch';
 import DataInfoCard from '@/components/home/DataInfoCard';
 import GenderSplitCard from '@/components/home/GenderSplitCard';
 import GroupTabs from '@/components/home/GroupTabs';
@@ -27,15 +28,16 @@ export default function HomeView({ group }: { group: Group }) {
       <div className="pt-8 pb-2 text-center">
         <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
           {group === 'jewish' ? (
-            <>איזה שם ניתן הכי הרבה בישראל?</>
+            <>כמה אנשים בישראל נושאים את השם שלכם?</>
           ) : (
             <>שמות {GROUP_LABELS[group]} בישראל</>
           )}
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
-          כל השמות הפרטיים בישראל מ-1949 ועד היום, על בסיס הנתונים הרשמיים של הלשכה
-          המרכזית לסטטיסטיקה - מגמות, השוואות וסיפורים.
+          הקלידו שם וגלו כמה נושאים אותו, כמה הוא נדיר ואיך הוא עלה וירד לאורך השנים -
+          על בסיס הנתונים הרשמיים של הלשכה המרכזית לסטטיסטיקה, 1949-2024.
         </p>
+        <HeroSearch group={group === 'jewish' ? undefined : group} />
         <Link
           href={namePath(showcase.name)}
           className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-primary/15"

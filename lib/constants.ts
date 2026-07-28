@@ -1,7 +1,7 @@
 export const SITE_NAME = 'דשבורד השמות של ישראל';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://babiesil.com';
 export const SITE_DESCRIPTION =
-  'מחפשים שם לבייבי שבדרך? כאן תמצאו את השמות הנפוצים והנדירים בישראל, מגמות של שמות לאורך השנים, התפלגות בין בנים לבנות ועוד - על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949-2024.';
+  'בדקו כמה אנשים בישראל נושאים את השם שלכם, כמה נדיר השם ואיך הפופולריות שלו השתנתה לאורך השנים - על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949-2024.';
 
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? 'GTM-WPC9JGKS';
 
