@@ -30,6 +30,7 @@ npm run build      # production build (prerenders ~2,100 pages)
 | `/trending` | Fastest rising/falling names (3-year windows, per-group thresholds) |
 | `/stories` · `/stories/[slug]` | Data-verified cultural stories (e.g. what זוהר ארגוב did to the name אלינור) |
 | `/about` | Data source and methodology (+ Dataset/FAQ structured data) |
+| `/privacy` | Privacy policy: analytics/cookie disclosure |
 | `/api/*` | Small JSON endpoints powering the interactive widgets |
 
 ## Architecture

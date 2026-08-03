@@ -152,7 +152,33 @@ Two review rounds caught exactly this class of bug in freshly written code.
   (webmasters scope, quota project `baby-names-dashboard`) — used for the
   recurring "SEO review" ritual: pull top queries, find position 8–20
   opportunities and low-CTR pages, fix.
-- **Analytics**: GTM `GTM-WPC9JGKS` (via env `NEXT_PUBLIC_GTM_ID`) + Vercel
-  Web Analytics.
+- **Analytics** (two stacks, deliberately - state as of 2026-08):
+  - Vercel Web Analytics (`<Analytics/>` in layout): cookieless, counts every
+    session, visitor hash resets daily (no cross-day users). Source of truth
+    for raw traffic counts.
+  - GA4 property "Babies IL" (`G-YEQRQ1YEKF`) is bundled inside GTM
+    `GTM-WPC9JGKS` (env `NEXT_PUBLIC_GTM_ID`). GTM + GA4 both live under
+    **rsvp@rsvpevents.co.il** (GTM account "RSVP"), NOT under
+    zivassor@gmail.com. GA4 is linked to Search Console (reports published)
+    and event retention is set to 14 months. Use GA4 for landing pages,
+    channels (incl. the "AI Assistant" channel - measures the GEO strategy)
+    and returning visitors.
+  - GTM injects on first gesture / 3.5s idle (`components/GtmLoader.tsx`,
+    mobile-INP trade-off), so GA4 misses short no-gesture visits and reads
+    engagement optimistically high vs Vercel. The container (v12+) maps
+    dataLayer `originalLocation` → `page_location` on the Google tag so
+    tap-first sessions attribute to the true landing page - re-add that
+    mapping if the Google tag is ever rebuilt. Container is minimal on
+    purpose: one Google tag, one Page View trigger (old-site click tags
+    were deleted in v13).
+  - Share buttons (`components/ShareButton.tsx`) append
+    `utm_source=share_sheet|whatsapp&utm_medium=social` so shared visits
+    classify as Organic Social instead of Direct; the copy-link URL stays
+    clean on purpose.
+- **Privacy**: `/privacy` (footer-linked) discloses the GA4/GTM cookies,
+  Vercel's cookieless analytics and hosting logs. Deliberate 2026-08
+  decision: notice-based compliance, NO consent banner (Israeli law has no
+  statutory cookie-banner requirement post-Amendment 13; the enforceable
+  duty is notice). Keep `/privacy` in sync when the analytics stack changes.
 - The old Google Cloud Run deployment is decommissioned; do not add Docker or
   GitHub Actions deploy workflows.
