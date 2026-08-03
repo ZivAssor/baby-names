@@ -62,6 +62,9 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
   const facts = nameFacts(detail);
   const related = relatedNames(detail.name);
   const letter = detail.name[0];
+  // The 28 name stories were only ever reachable from the /stories index, which
+  // barely ranks. The name pages do rank, so link each story from its own name.
+  const story = getStory(detail.name);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -118,6 +121,19 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
           ))}
         </ul>
       </section>
+
+      {story && (
+        <section className="mb-4 rounded-xl border border-border bg-secondary p-6">
+          <h2 className="mb-2 text-xl font-bold">הסיפור מאחורי השם {detail.name}</h2>
+          <p className="mb-3 text-foreground">{story.hook}</p>
+          <Link
+            href={`/stories/${encodeURIComponent(story.slug)}`}
+            className="font-medium text-primary hover:underline"
+          >
+            קראו את הסיפור המלא: {story.title} ›
+          </Link>
+        </section>
+      )}
 
       <NameCharts detail={detail} />
 
