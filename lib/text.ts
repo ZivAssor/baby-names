@@ -80,11 +80,23 @@ export function nameFacts(detail: NameDetail): string[] {
   return facts;
 }
 
+// Search-result title. The name leads: the queries these pages actually rank
+// for are overwhelmingly the bare name (or "<name> שם"), and in an RTL SERP the
+// first words are what the searcher scans and what Google bolds. The count is
+// the answer they came for, so it goes in the title rather than only the body.
+// `totalAll` is the CBS `t` column, which is never suppressed (its floor is 5),
+// so it is safe to print as an exact number - unlike the yearly counts.
+export function nameTitle(detail: NameDetail): string {
+  return `${detail.name} - ${formatNumber(detail.totalAll)} אנשים בישראל נושאים את השם`;
+}
+
 export function nameMetaDescription(detail: NameDetail): string {
   const bits = [
-    `${formatNumber(detail.totalAll)} תושבי ישראל נושאים את השם ${detail.name}`,
+    `${detail.name}: ${formatNumber(detail.totalAll)} תושבי ישראל נושאים את השם`,
   ];
-  if (detail.peakYear) bits.push(`שנת השיא: ${detail.peakYear}`);
-  bits.push('גרפים ונתונים מלאים מ-1949 עד היום, על בסיס נתוני הלמ״ס.');
+  const character = genderCharacter(detail);
+  if (character) bits.push(character);
+  if (detail.peakYear !== null) bits.push(`שנת השיא ${detail.peakYear}`);
+  bits.push('גרפים ומגמות לפי שנה ומגדר, נתוני הלמ״ס 1949-2024.');
   return bits.join(' · ');
 }

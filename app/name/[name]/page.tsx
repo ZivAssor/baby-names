@@ -13,7 +13,8 @@ import {
 import { getNameDetail, getSearchIndex, relatedNames } from '@/lib/data';
 import { formatNumber } from '@/lib/format';
 import { pageMetadata } from '@/lib/seo';
-import { nameFacts, nameMetaDescription } from '@/lib/text';
+import { getStory } from '@/lib/stories';
+import { nameFacts, nameMetaDescription, nameTitle } from '@/lib/text';
 
 // Prerender the 6,000 most common names (nearly all human traffic); the rare
 // long tail renders on first visit and stays cached until the next deploy.
@@ -48,7 +49,7 @@ export async function generateMetadata({
   const detail = await detailFromParams(params);
   if (!detail) return { title: 'שם לא נמצא' };
   return pageMetadata({
-    title: `כמה אנשים נושאים את השם ${detail.name}?`,
+    title: nameTitle(detail),
     description: nameMetaDescription(detail),
     canonical: namePath(detail.name),
   });
