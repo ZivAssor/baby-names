@@ -86,7 +86,7 @@ export default function AboutPage() {
             href="https://www.cbs.gov.il/he/Pages/search/TableMaps.aspx?CbsSubject=שמות"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline hover:text-blue-900"
+            className="text-primary underline hover:text-primary/80"
           >
             הלשכה המרכזית לסטטיסטיקה
           </a>

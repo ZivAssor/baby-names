@@ -20,19 +20,25 @@ interface ShareButtonProps {
 export default function ShareButton({ shareText, path }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
   const url = `${SITE_URL}${path}`;
+  // UTM-tagged so shared visits classify as Organic Social in GA4 instead of
+  // Direct (WhatsApp app opens carry no referrer). Two sources on purpose:
+  // the native sheet's target app is unknowable, only wa.me is provably
+  // WhatsApp. The copy-link URL stays clean - it gets pasted anywhere.
+  const taggedUrl = (source: string) => `${url}?utm_source=${source}&utm_medium=social`;
 
   async function share() {
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
-        await navigator.share({ text: shareText, url });
+        await navigator.share({ text: shareText, url: taggedUrl('share_sheet') });
         return;
       } catch {
         // user closed the sheet - nothing to do
         return;
       }
     }
+    const waUrl = taggedUrl('whatsapp');
     window.open(
-      `https://wa.me/?text=${encodeURIComponent(`${shareText} ${url}`)}`,
+      `https://wa.me/?text=${encodeURIComponent(`${shareText} ${waUrl}`)}`,
       '_blank',
       'noopener',
     );

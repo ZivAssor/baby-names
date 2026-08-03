@@ -31,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     })),
     { url: `${SITE_URL}/about`, changeFrequency: 'yearly', priority: 0.6 },
+    { url: `${SITE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.3 },
     ...letterIndex().map(({ letter }) => ({
       url: `${SITE_URL}${letterPath(letter)}`,
       changeFrequency: 'monthly' as const,

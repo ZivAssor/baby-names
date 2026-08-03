@@ -105,6 +105,11 @@ export default function Footer() {
                 על הנתונים והמתודולוגיה
               </Link>
             </li>
+            <li>
+              <Link href="/privacy" className="hover:text-primary hover:underline">
+                מדיניות פרטיות
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
