@@ -1,3 +1,4 @@
+import { FIRST_YEAR, LAST_YEAR } from '@/lib/constants';
 import { getNameDetail } from '@/lib/data';
 import { formatNumber } from '@/lib/format';
 import { ogImage, OG_SIZE } from '@/lib/og';
@@ -21,6 +22,6 @@ export default async function Image({ params }: { params: Promise<{ name: string
   }
   const parts = [`${formatNumber(detail.totalAll)} תושבי ישראל`];
   if (detail.peakYear) parts.push(`שנת שיא: ${detail.peakYear}`);
-  parts.push('נתוני הלמ״ס 1949-2024');
+  parts.push(`נתוני הלמ״ס ${FIRST_YEAR}-${LAST_YEAR}`);
   return ogImage(`השם ${detail.name}`, parts);
 }

@@ -7,7 +7,7 @@ import RankedNamesCard, { type RankedPair } from '@/components/home/RankedNamesC
 import SlotMachine from '@/components/home/SlotMachine';
 import StatsCards from '@/components/home/StatsCards';
 import TrendCard from '@/components/home/TrendCard';
-import { DEFAULT_RANGE, GROUP_LABELS, namePath, type Group } from '@/lib/constants';
+import { DEFAULT_RANGE, FIRST_YEAR, GROUP_LABELS, LAST_YEAR, namePath, type Group } from '@/lib/constants';
 import { defaultNameFor, getNameDetail, rarestNames, topNames } from '@/lib/data';
 
 export default function HomeView({ group }: { group: Group }) {
@@ -35,7 +35,8 @@ export default function HomeView({ group }: { group: Group }) {
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
           הקלידו שם וגלו כמה נושאים אותו, כמה הוא נדיר ואיך הוא עלה וירד לאורך השנים -
-          על בסיס הנתונים הרשמיים של הלשכה המרכזית לסטטיסטיקה, 1949-2024.
+          מאגר השמות של ישראל, על בסיס הנתונים הרשמיים של הלשכה המרכזית
+          לסטטיסטיקה, {FIRST_YEAR}-{LAST_YEAR}.
         </p>
         <HeroSearch group={group === 'jewish' ? undefined : group} />
         <Link

@@ -9,6 +9,19 @@ const nextConfig = {
       './assets/fonts/Heebo-Regular.ttf',
       './assets/fonts/Heebo-Bold.ttf',
     ],
+    '/rare/opengraph-image': ['./assets/fonts/Heebo-Regular.ttf', './assets/fonts/Heebo-Bold.ttf'],
+    '/top-names/opengraph-image': [
+      './assets/fonts/Heebo-Regular.ttf',
+      './assets/fonts/Heebo-Bold.ttf',
+    ],
+    '/stories/opengraph-image': [
+      './assets/fonts/Heebo-Regular.ttf',
+      './assets/fonts/Heebo-Bold.ttf',
+    ],
+    '/stories/[slug]/opengraph-image': [
+      './assets/fonts/Heebo-Regular.ttf',
+      './assets/fonts/Heebo-Bold.ttf',
+    ],
   },
 };
 

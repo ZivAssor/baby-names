@@ -1,12 +1,15 @@
 export const SITE_NAME = 'דשבורד השמות של ישראל';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://babiesil.com';
-export const SITE_DESCRIPTION =
-  'בדקו כמה אנשים בישראל נושאים את השם שלכם, כמה נדיר השם ואיך הפופולריות שלו השתנתה לאורך השנים - על בסיס נתוני הלשכה המרכזית לסטטיסטיקה, 1949-2024.';
-
-export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? 'GTM-WPC9JGKS';
 
 export const FIRST_YEAR = 1949;
 export const LAST_YEAR = 2024;
+
+// Search demand uses vocabulary the brand name doesn't (אתר שמות, מאגר שמות -
+// GSC 2026-08). The description carries it so those queries have text to
+// match, while SITE_NAME keeps the דשבורד brand that converts at 73-93% CTR.
+export const SITE_DESCRIPTION = `אתר השמות של ישראל: בדקו כמה אנשים נושאים את השם שלכם, כמה נדיר השם ואיך הפופולריות שלו השתנתה לאורך השנים - מאגר השמות המלא של הלמ״ס, ${FIRST_YEAR}-${LAST_YEAR}.`;
+
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? 'GTM-WPC9JGKS';
 export const YEAR_COUNT = LAST_YEAR - FIRST_YEAR + 1;
 export const SUPPRESSED = -1;
 
