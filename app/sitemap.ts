@@ -39,17 +39,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  // Temporarily limited to the prerendered head (matches generateStaticParams
-  // in app/name/[name]/page.tsx): pointing crawlers at the on-demand tail
-  // burns Vercel's free ISR-write quota. Restore to the full list once the
-  // usage cycle resets or the project moves to a paid plan.
-  const names: MetadataRoute.Sitemap = getSearchIndex()
-    .slice(0, 6000)
-    .map(([name]) => ({
-      url: `${SITE_URL}${namePath(name)}`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.4,
-    }));
+  // Full name inventory (~19,900). The tail beyond the 6,000 prerendered names
+  // renders on first crawl and stays in the ISR cache - fine on the Pro plan
+  // (cap was lifted 2026-08 when the team upgraded from Hobby).
+  const names: MetadataRoute.Sitemap = getSearchIndex().map(([name]) => ({
+    url: `${SITE_URL}${namePath(name)}`,
+    changeFrequency: 'monthly' as const,
+    priority: 0.4,
+  }));
 
   return [...core, ...names];
 }
