@@ -10,7 +10,7 @@ SVG charts, deployed on Vercel (push to main = deploy).
 
 ```bash
 npm run dev          # local dev server
-npm run build        # production build (prerenders ~2,100 pages, ~15s)
+npm run build        # production build (prerenders ~6,200 pages, ~15s)
 npm run build:data   # regenerate data/generated/ from the CBS xlsx
 ```
 
@@ -65,9 +65,15 @@ Two review rounds caught exactly this class of bug in freshly written code.
   mirrored. `lib/og.tsx#rtlLine()` fakes RTL by reversing word order and
   reversing characters inside Hebrew-containing words only. Multi-line
   wrapping breaks reading order, so subtitle content is rendered as
-  single-line chips in a `row-reverse` flex row. Fonts: static Heebo
-  instances in `assets/fonts/` (satori can't use variable fonts), traced into
-  the OG routes via `outputFileTracingIncludes` in next.config.mjs.
+  single-line chips in a `row-reverse` flex row, and **headlines must be
+  short enough to fit one line** (a wrapped headline scrambles; verify new
+  OG output visually). Routes exist for `/`, `/name/[name]`, `/rare`,
+  `/top-names`, `/stories`, `/stories/[slug]` — register any new one in
+  `outputFileTracingIncludes` (next.config.mjs), which traces the fonts:
+  static Heebo instances in `assets/fonts/` (satori can't use variable
+  fonts). Data honesty applies to OG chips too: `topNames('jewish',...)` is
+  sector data, so a names teaser under a national headline must be scoped
+  (nationally the top 2024 boys' name is מוחמד, not דוד — caught in review).
 - Sort Hebrew with `localeCompare(x, 'he')`.
 - Alphabetical tie-breaks on large tied sets produce all-א lists (the
   old site's "rarest names" bug, re-introduced once and caught in review).
@@ -142,8 +148,18 @@ Two review rounds caught exactly this class of bug in freshly written code.
 
 - **Vercel**: team `zivassor-6063s-projects`, project `baby-names`
   (ids in `.vercel/project.json`). GitHub-connected: push to main deploys.
+  **Pro plan since 2026-08-04** — the sitemap lists the full ~19,900-name
+  inventory (20k URLs; it was capped at the 6,000 prerendered names on the
+  Hobby tier to protect the ISR-write quota — don't re-cap it).
   `www` → apex 308 redirect configured at the Vercel domain level.
   Web Analytics enabled (+ `<Analytics/>` in layout). Env vars in `.env.example`.
+- **Weekly growth routine**: a scheduled cloud agent (on the owner's
+  claude.ai account) runs Mondays, opens a PR from branch `growth/<date>`
+  with SEO/growth changes plus a report in `docs/growth-reports/` — the
+  reports are the routine's memory across runs, keep them in the repo.
+  Review before merging and hold it to this file's contracts; in the first
+  two runs every defect found in review was Hebrew-copy-level (unqualified
+  numbers, inverted subject/object), never code, so review the prose hardest.
 - **DNS**: Cloudflare zone `babiesil.com` (all records DNS-only/grey cloud —
   required for Vercel). Registrar: GoDaddy (nameservers → Cloudflare).
 - **Search Console**: domain property `sc-domain:babiesil.com`; owners:
