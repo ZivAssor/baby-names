@@ -1,7 +1,7 @@
 // Auto-generated Hebrew fact sentences for name pages. These render on the
 // server so crawlers and AI assistants get citable factual text, not an empty
 // JS shell.
-import { GENDER_LABELS, GROUP_LABELS, LAST_YEAR } from './constants';
+import { FIRST_YEAR, GENDER_LABELS, GROUP_LABELS, LAST_YEAR } from './constants';
 import type { NameDetail } from './data';
 import { formatNumber } from './format';
 
@@ -97,6 +97,6 @@ export function nameMetaDescription(detail: NameDetail): string {
   const character = genderCharacter(detail);
   if (character) bits.push(character);
   if (detail.peakYear !== null) bits.push(`שנת השיא ${detail.peakYear}`);
-  bits.push('גרפים ומגמות לפי שנה ומגדר, נתוני הלמ״ס 1949-2024.');
+  bits.push(`גרפים ומגמות לפי שנה ומגדר, נתוני הלמ״ס ${FIRST_YEAR}-${LAST_YEAR}.`);
   return bits.join(' · ');
 }
