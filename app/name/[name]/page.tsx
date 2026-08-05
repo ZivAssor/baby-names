@@ -62,7 +62,7 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
   const facts = nameFacts(detail);
   const related = relatedNames(detail.name);
   const letter = detail.name[0];
-  // The 28 name stories were only ever reachable from the /stories index, which
+  // The name stories were only ever reachable from the /stories index, which
   // barely ranks. The name pages do rank, so link each story from its own name.
   const story = getStory(detail.name);
 

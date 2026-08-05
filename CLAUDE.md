@@ -132,17 +132,22 @@ Two review rounds caught exactly this class of bug in freshly written code.
    series files. Already RESEARCHED AND UNEXPLAINED (do NOT publish without
    new evidence - no sourced trigger was found): בר 1989, שירן 1983,
    נסרין 1976, שירין 1977, היבא 1980, וסאם 1975, אשרף 1974, סמאהר 1976,
-   יובל-בנות 1992. Medium-confidence held back for a possible future batch:
-   דור 1985 (Hanan Yuval album), לובנה 1975 (Qays wa Lubna TV series),
-   ג'ורי 2017 (Turkish drama dub - trigger plausible but two sources failed
-   verification).
+   יובל-בנות 1992, ותין 2018 (leading unproven lead: 2015 Gulf novel),
+   ריי 2016 (short-international-names fashion; Star Wars unproven),
+   ראניה 1973 (cross-sector spike, no vehicle found). Medium-confidence
+   held back for a possible future batch: מהראן 1982 (Egyptian serial
+   "الصراع" 1980, Ahmed Zaki as Mahran - no local broadcast doc, 2-year
+   gap). Formerly held-back דור 1985, לובנה 1975 and ג'ורי 2017 were
+   re-researched with new evidence and published in the 2026-08 batch
+   (ג'ורי via registry rankings, NOT the failed Turkish-dub lead).
 2. Verify the cultural trigger with web sources (we caught a wrong attribution
    this way - אגם רודברג was never on כוכב נולד).
 3. Verify EVERY number in the prose against `data/generated/series/*.json`
    (two review rounds each caught a wrong number in draft prose).
 4. Keep causal language careful (מתאם, not הוכחה) - the story page includes a
-   standing disclaimer. Published stories as of 2026-07: 28 (13 original +
-   15 in the July 2026 batch, incl. the first muslim-sector stories).
+   standing disclaimer. Published stories as of 2026-08: 39 (13 original +
+   15 in the July 2026 batch + 11 in the August 2026 batch, incl. the first
+   Egyptian-TV and regional-registry stories).
 
 ## Infrastructure
 
